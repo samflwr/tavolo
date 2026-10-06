@@ -4336,11 +4336,10 @@ body[data-profile="loreta"] {
 
 @media(min-width:761px) {
     .course-note-add {
-        width: 100%;
-        min-height: 40px;
-        padding: 8px 10px;
+        min-height: 32px;
+        padding: 5px 8px;
         border: 1px dashed var(--profile-line, #dfe5de);
-        border-radius: 9px;
+        border-radius: 8px;
         background: rgba(255, 255, 255, .42)
     }
 
@@ -4447,9 +4446,38 @@ body[data-profile="loreta"] {
     align-items: start
 }
 
-.course-card-layout.has-note-action {
+.course-card-layout.has-split-modules {
     grid-template-columns: minmax(0, 1fr);
     gap: 8px
+}
+
+.course-card-layout.has-note-action {
+    grid-template-columns: minmax(0, 1.1fr) minmax(100px, .9fr);
+    gap: 12px;
+    align-items: center
+}
+
+.course-card-layout.has-split-modules .course-status-row {
+    margin-top: 8px;
+    padding-top: 0
+}
+
+.course-card-layout.has-split-modules .course-components {
+    margin-top: 8px
+}
+
+.course-card-layout.has-split-modules.has-note-action .course-note-add {
+    grid-column: 1;
+    justify-self: end;
+    align-self: end;
+    width: fit-content;
+    min-height: 0;
+    margin-top: 0;
+    padding: 4px 8px
+}
+
+.course-components {
+    gap: 6px
 }
 
 .course-card-layout.has-note-action .course-status-row {
@@ -4457,11 +4485,26 @@ body[data-profile="loreta"] {
 }
 
 .course-card-layout.has-note-action .course-note-add {
-    grid-column: 1;
-    justify-self: start;
+    grid-column: 2;
+    grid-row: 1;
+    justify-self: end;
+    align-self: end;
     width: fit-content;
     min-height: 0;
+    margin: 0;
     padding: 4px 8px
+}
+
+.course-card-layout.has-split-modules.has-note-action {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 8px
+}
+
+.course-card-layout.has-split-modules.has-note-action .course-note-add {
+    grid-column: 1;
+    grid-row: auto;
+    justify-self: end;
+    align-self: end
 }
 
 .course-card-info {
@@ -4504,38 +4547,70 @@ body[data-profile="loreta"] {
 }
 
 .course-component {
+    --module-accent: var(--profile-accent, #78847a);
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(110px, .8fr);
+    grid-template-columns: minmax(0, 1fr) minmax(138px, .72fr);
     align-items: center;
-    gap: 6px 9px;
-    padding: 9px 10px;
-    border: 1px solid var(--line);
-    border-radius: 9px;
-    background: rgba(255, 255, 255, .48)
+    gap: 7px 12px;
+    padding: 10px 12px;
+    border: 1px solid color-mix(in srgb, var(--module-accent) 13%, var(--line));
+    border-left: 2px solid color-mix(in srgb, var(--module-accent) 52%, var(--line));
+    border-radius: 10px;
+    background: color-mix(in srgb, var(--profile-wash, #f5f7f3) 35%, var(--card));
+    transition: background .16s ease, border-color .16s ease
+}
+
+.course-component[data-module-state="passed"] {
+    border-color: #d5e5d8;
+    border-left-color: #73a681;
+    background: #f4f8f4
+}
+
+.course-component[data-module-state="scheduled"] {
+    border-color: #dce5f0;
+    border-left-color: #8299bb;
+    background: #f7f9fc
+}
+
+.course-component[data-module-state="studying"] {
+    border-color: #e8ddc8;
+    border-left-color: #c19a58;
+    background: #fbf8f1
+}
+
+.course-component[data-module-state="partial"] {
+    border-color: #d5e5d8;
+    border-left-color: #73a681;
+    background: #f4f8f4
 }
 
 .course-component-heading {
     display: flex;
     min-width: 0;
-    flex-direction: column;
-    gap: 2px
+    align-items: baseline;
+    gap: 7px
 }
 
 .course-component-heading strong {
-    font-size: 10px;
-    font-weight: 600;
-    line-height: 1.3
-}
-
-.course-component-heading span,
-.course-component-state {
-    color: var(--muted);
-    font-size: 9px
+    min-width: 0;
+    font-size: 11px;
+    font-weight: 620;
+    line-height: 1.35
 }
 
 .course-component-heading span {
-    color: #416f50;
-    font-weight: 600
+    flex: none;
+    color: color-mix(in srgb, var(--module-accent) 78%, var(--muted));
+    font-size: 9px;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums
+}
+
+.course-component-state {
+    grid-column: 2;
+    color: var(--muted);
+    font-size: 10px;
+    text-align: right
 }
 
 .course-component-status,
@@ -4543,9 +4618,10 @@ body[data-profile="loreta"] {
 .course-component-grade {
     width: 100%;
     min-width: 0;
+    min-height: 34px;
     border: 1px solid var(--line);
-    border-radius: 7px;
-    padding: 7px;
+    border-radius: 8px;
+    padding: 7px 9px;
     background: var(--card);
     color: var(--ink);
     font: inherit;
@@ -4557,18 +4633,30 @@ body[data-profile="loreta"] {
     grid-column: 2
 }
 
-.course-component-state {
-    grid-column: 2;
-    text-align: right
-}
-
 :root[data-theme="dark"] .course-component {
-    border-color: var(--line);
-    background: #252b27
+    border-color: color-mix(in srgb, var(--module-accent) 24%, var(--line));
+    border-left-color: color-mix(in srgb, var(--module-accent) 68%, var(--line));
+    background: color-mix(in srgb, var(--card) 88%, var(--profile-wash, #252b27));
+    box-shadow: none
 }
 
-:root[data-theme="dark"] .course-component-heading span {
-    color: #9bd0ae
+:root[data-theme="dark"] .course-component[data-module-state="passed"],
+:root[data-theme="dark"] .course-component[data-module-state="partial"] {
+    border-color: #355640;
+    border-left-color: #79ac86;
+    background: #202d24
+}
+
+:root[data-theme="dark"] .course-component[data-module-state="scheduled"] {
+    border-color: #38495b;
+    border-left-color: #8299bb;
+    background: #202832
+}
+
+:root[data-theme="dark"] .course-component[data-module-state="studying"] {
+    border-color: #514735;
+    border-left-color: #c19a58;
+    background: #2b2820
 }
 
 :root[data-theme="dark"] .course-component-status,
@@ -4742,6 +4830,29 @@ body[data-profile="loreta"] {
         gap: 10px
     }
 
+    .course-card-layout.has-note-action {
+        grid-template-columns: 1fr;
+        gap: 10px
+    }
+
+    .course-card-layout.has-note-action .course-note-add {
+        grid-column: 1;
+        grid-row: auto;
+        justify-self: end;
+        align-self: end;
+        margin: 0
+    }
+
+    .course-card-layout.has-split-modules.has-note-action {
+        grid-template-columns: 1fr
+    }
+
+    .course-component {
+        grid-template-columns: minmax(0, 1fr) minmax(120px, .85fr);
+        gap: 7px 9px;
+        padding: 9px 10px
+    }
+
     .course-status-row {
         margin-top: 8px;
         padding-top: 0
@@ -4759,6 +4870,28 @@ body[data-profile="loreta"] {
 @media(max-width:430px) {
     .course-card-layout {
         grid-template-columns: 1fr
+    }
+
+    .course-component {
+        grid-template-columns: minmax(0, 1fr) minmax(112px, .8fr);
+        gap: 7px;
+        padding: 9px
+    }
+
+    .course-component-heading {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 2px
+    }
+
+    .course-component-heading strong {
+        overflow-wrap: anywhere
+    }
+
+    .course-component-status,
+    .course-component-date,
+    .course-component-grade {
+        padding: 7px
     }
 
     .course-note-panel textarea {
