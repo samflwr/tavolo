@@ -1107,6 +1107,68 @@ a {
     font-size: 9px
 }
 
+.calendar-attendance {
+    margin: 0 0 14px;
+    padding: 14px 15px;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: color-mix(in srgb, var(--profile-wash, #f7f7f8) 40%, var(--card))
+}
+
+.calendar-attendance-heading {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 10px
+}
+
+.calendar-attendance-heading .section-kicker {
+    margin-bottom: 2px
+}
+
+.calendar-attendance-heading h3 {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 650;
+    letter-spacing: -.02em
+}
+
+.attendance-summaries {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: 8px
+}
+
+.attendance-summaries .attendance-summary {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    background: var(--card)
+}
+
+.attendance-summary-meta {
+    grid-column: 1 / -1;
+    color: var(--muted);
+    font-size: 9px
+}
+
+.attendance-empty {
+    margin: 0;
+    padding: 8px 0;
+    color: var(--muted);
+    font-size: 11px
+}
+
+:root[data-theme="dark"] .calendar-attendance {
+    border-color: var(--line);
+    background: #202521
+}
+
+:root[data-theme="dark"] .attendance-summaries .attendance-summary {
+    background: #222923
+}
+
 .calendar-layout {
     display: grid;
     grid-template-columns: minmax(0, 1.45fr) minmax(250px, .7fr);
@@ -2027,7 +2089,10 @@ body {
 }
 
 .welcome {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
     align-items: center;
+    gap: 10px 28px;
     margin-bottom: 24px
 }
 
@@ -2049,16 +2114,34 @@ body {
 }
 
 .rename-profile-button {
-    padding: 5px 0;
-    border: 0;
-    background: transparent;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    min-height: 34px;
+    padding: 0 9px;
+    border: 1px solid var(--line);
+    border-radius: 9px;
+    background: var(--card);
     color: var(--muted);
-    font-size: 11px;
-    text-decoration: underline;
-    text-underline-offset: 3px
+    font-size: 10px;
+    text-decoration: none;
+    transition: background .15s, border-color .15s, color .15s
+}
+
+.rename-profile-button svg {
+    width: 14px;
+    height: 14px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round
 }
 
 .rename-profile-button:hover {
+    border-color: var(--profile-line, var(--line));
+    background: var(--profile-wash, #f7f7f8);
     color: var(--ink)
 }
 
@@ -2873,9 +2956,17 @@ body {
 }
 
 .welcome {
+    display: grid;
+    grid-template-columns: minmax(170px, .35fr) minmax(0, 1fr);
     align-items: center;
-    gap: 24px;
+    gap: 10px 28px;
     margin-bottom: 20px
+}
+
+.welcome-title {
+    display: flex;
+    align-items: center;
+    gap: 10px
 }
 
 .welcome h1 {
@@ -2887,10 +2978,11 @@ body {
 
 .profile-tabs {
     display: grid;
-    grid-template-columns: repeat(5, minmax(0, 1fr));
-    gap: 8px;
-    flex: 1;
-    max-width: 690px
+    grid-template-columns: repeat(auto-fit, minmax(96px, 1fr));
+    gap: 6px;
+    width: 100%;
+    min-width: 0;
+    max-width: none
 }
 
 .profile-chip {
@@ -3140,16 +3232,21 @@ body[data-profile="loreta"] {
     content: none
 }
 
+@media(min-width:761px) {
+    .profile-tabs {
+        grid-template-columns: repeat(3, minmax(0, 1fr))
+    }
+}
+
 @media(max-width:760px) {
     .welcome {
+        grid-template-columns: 1fr;
         align-items: flex-start;
-        flex-direction: column;
         gap: 10px
     }
 
     .profile-tabs {
-        width: 100%;
-        max-width: none;
+        grid-template-columns: repeat(auto-fit, minmax(94px, 1fr));
         gap: 5px
     }
 
@@ -3394,9 +3491,18 @@ body[data-profile="loreta"] {
 
 .study-day-head {
     display: flex;
-    align-items: baseline;
-    gap: 7px;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
     margin-bottom: 7px
+}
+
+.study-day-title,
+.study-day-tools {
+    display: flex;
+    min-width: 0;
+    align-items: center;
+    gap: 7px
 }
 
 .study-day-head strong {
@@ -3410,8 +3516,44 @@ body[data-profile="loreta"] {
     font-size: 9px
 }
 
-.study-day-head small {
-    margin-left: auto
+.study-day-tools small {
+    white-space: nowrap
+}
+
+.study-day-add {
+    min-height: 27px;
+    padding: 4px 8px;
+    border: 1px solid var(--profile-line, var(--line));
+    border-radius: 7px;
+    background: var(--card);
+    color: var(--profile-accent, var(--ink));
+    font: inherit;
+    font-size: 10px;
+    font-weight: 560;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background-color .16s ease, border-color .16s ease
+}
+
+.study-day-add:hover {
+    border-color: var(--profile-accent, var(--line));
+    background: var(--profile-wash, #f7f7f8)
+}
+
+.study-day-add:disabled {
+    cursor: not-allowed;
+    opacity: .55
+}
+
+:root[data-theme="dark"] .study-day-add {
+    border-color: var(--line);
+    background: var(--card);
+    color: var(--ink)
+}
+
+:root[data-theme="dark"] .study-day-add:hover {
+    border-color: var(--profile-accent, var(--line));
+    background: var(--profile-wash, #272d29)
 }
 
 .study-day-list {
@@ -3604,6 +3746,25 @@ body[data-profile="loreta"] {
 
     .study-day {
         padding: 9px
+    }
+
+    .study-day-head {
+        align-items: flex-start
+    }
+
+    .study-day-title {
+        flex-wrap: wrap;
+        gap: 3px 6px
+    }
+
+    .study-day-tools {
+        flex: none;
+        gap: 5px
+    }
+
+    .study-day-add {
+        padding: 4px 6px;
+        font-size: 9px
     }
 
     .study-session {
@@ -4287,6 +4448,312 @@ body[data-profile="loreta"] {
     stroke-linejoin: round
 }
 
+.notifications-toggle {
+    position: relative;
+    display: inline-flex;
+    min-height: 36px;
+    align-items: center;
+    justify-content: center;
+    gap: 7px
+}
+
+.notifications-toggle svg {
+    width: 16px;
+    height: 16px;
+    flex: none;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.7;
+    stroke-linecap: round;
+    stroke-linejoin: round
+}
+
+.notifications-badge {
+    display: inline-flex;
+    min-width: 18px;
+    height: 18px;
+    align-items: center;
+    justify-content: center;
+    padding: 0 5px;
+    border-radius: 99px;
+    background: #bf514d;
+    color: #fff;
+    font-size: 10px;
+    font-weight: 700;
+    line-height: 1
+}
+
+.notifications-dialog {
+    width: min(560px, calc(100% - 28px));
+    max-height: min(86dvh, 820px);
+    overflow: hidden
+}
+
+.notifications-panel {
+    display: grid;
+    max-height: min(86dvh, 820px);
+    grid-template-rows: auto minmax(0, 1fr) auto auto;
+    gap: 12px;
+    padding: 20px
+}
+
+.notifications-heading {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px
+}
+
+.notifications-heading h2,
+.announcement-form h3 {
+    margin: 0;
+    font-size: 17px;
+    font-weight: 650;
+    letter-spacing: -.03em
+}
+
+.notifications-heading p {
+    margin: 4px 0 0;
+    color: var(--muted);
+    font-size: 11px
+}
+
+.notifications-close {
+    display: grid;
+    width: 32px;
+    height: 32px;
+    flex: none;
+    place-items: center;
+    border: 1px solid var(--line);
+    border-radius: 9px;
+    background: var(--card);
+    color: var(--muted);
+    font-size: 21px;
+    line-height: 1
+}
+
+.notifications-list {
+    display: grid;
+    min-height: 100px;
+    max-height: 48dvh;
+    align-content: start;
+    gap: 8px;
+    overflow: auto;
+    padding: 2px
+}
+
+.announcement-card {
+    display: grid;
+    gap: 7px;
+    padding: 12px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: var(--card)
+}
+
+.announcement-card.is-unread {
+    border-color: color-mix(in srgb, var(--profile-accent, #64736a) 34%, var(--line));
+    background: color-mix(in srgb, var(--profile-wash, #f7f7f8) 32%, var(--card))
+}
+
+.announcement-card-head,
+.announcement-card-head>div,
+.announcement-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px
+}
+
+.announcement-card-head {
+    justify-content: space-between
+}
+
+.announcement-card-head>div {
+    flex-wrap: wrap
+}
+
+.announcement-author {
+    color: var(--ink);
+    font-size: 10px;
+    font-weight: 650
+}
+
+.announcement-card time,
+.announcement-read-state {
+    color: var(--muted);
+    font-size: 9px
+}
+
+.announcement-new {
+    padding: 3px 7px;
+    border-radius: 99px;
+    background: color-mix(in srgb, var(--profile-accent, #64736a) 15%, var(--card));
+    color: var(--profile-accent, var(--ink));
+    font-size: 9px;
+    font-weight: 650
+}
+
+.announcement-card h3 {
+    margin: 0;
+    color: var(--ink);
+    font-size: 13px;
+    font-weight: 650
+}
+
+.announcement-card p {
+    margin: 0;
+    color: var(--ink);
+    font-size: 11px;
+    line-height: 1.55;
+    overflow-wrap: anywhere;
+    white-space: pre-wrap
+}
+
+.announcement-actions {
+    justify-content: flex-end
+}
+
+.announcement-actions button,
+.notifications-read-all {
+    min-height: 30px;
+    padding: 5px 9px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--card);
+    color: var(--ink);
+    font-size: 10px
+}
+
+.announcement-actions button:hover,
+.notifications-read-all:hover {
+    border-color: var(--profile-line, #c9d8ce);
+    background: var(--profile-wash, #f7f7f8)
+}
+
+.announcement-delete {
+    color: #a54e46 !important
+}
+
+.notifications-empty,
+.notifications-error {
+    margin: 0;
+    padding: 12px;
+    color: var(--muted);
+    font-size: 11px;
+    text-align: center
+}
+
+.notifications-error {
+    color: #a54e46
+}
+
+.notifications-read-all {
+    justify-self: end
+}
+
+.announcement-form {
+    display: grid;
+    gap: 9px;
+    padding-top: 12px;
+    border-top: 1px solid var(--line)
+}
+
+.announcement-form label {
+    display: grid;
+    gap: 5px;
+    color: var(--muted);
+    font-size: 10px
+}
+
+.announcement-audience {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 7px 12px;
+    min-width: 0;
+    margin: 0;
+    padding: 9px 10px;
+    border: 1px solid var(--line);
+    border-radius: 9px
+}
+
+.announcement-audience legend {
+    padding: 0 4px;
+    color: var(--muted);
+    font-size: 10px
+}
+
+.announcement-audience-option,
+.announcement-recipient-list label {
+    display: inline-flex !important;
+    align-items: center;
+    gap: 6px !important;
+    color: var(--ink) !important;
+    font-size: 10px !important;
+    cursor: pointer
+}
+
+.announcement-audience input,
+.announcement-recipient-list input {
+    width: 14px !important;
+    height: 14px;
+    margin: 0;
+    accent-color: var(--profile-accent, var(--green))
+}
+
+.announcement-recipient-list {
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(auto-fit, minmax(92px, 1fr));
+    gap: 8px;
+    padding-top: 6px
+}
+
+.announcement-form input:not([type="radio"]):not([type="checkbox"]),
+.announcement-form textarea {
+    width: 100%;
+    min-width: 0;
+    padding: 9px 10px;
+    border: 1px solid var(--line);
+    border-radius: 9px;
+    background: var(--paper);
+    color: var(--ink);
+    font-size: 12px
+}
+
+.announcement-form textarea {
+    min-height: 78px;
+    resize: vertical
+}
+
+.announcement-message {
+    min-height: 0;
+    margin: 0;
+    color: var(--muted);
+    font-size: 10px
+}
+
+:root[data-theme="dark"] .notifications-close,
+:root[data-theme="dark"] .announcement-actions button,
+:root[data-theme="dark"] .notifications-read-all {
+    border-color: var(--line);
+    background: #252b27;
+    color: var(--ink)
+}
+
+:root[data-theme="dark"] .announcement-audience {
+    border-color: var(--line);
+    background: #191e1b
+}
+
+:root[data-theme="dark"] .announcement-form input,
+:root[data-theme="dark"] .announcement-form textarea {
+    border-color: var(--line);
+    background: #191e1b;
+    color: var(--ink)
+}
+
 .theme-icon-sun {
     display: none
 }
@@ -4537,6 +5004,122 @@ body[data-profile="loreta"] {
 
 .course-status-row .edit-button {
     margin: 0
+}
+
+.attendance-summary {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    align-items: center;
+    gap: 4px 8px;
+    width: min(100%, 260px);
+    margin-top: 10px;
+    padding: 9px 10px;
+    border: 1px solid color-mix(in srgb, var(--profile-accent, #668f7a) 17%, var(--line));
+    border-radius: 10px;
+    background: color-mix(in srgb, var(--profile-wash, #f5f7f3) 45%, var(--card));
+    font-variant-numeric: tabular-nums
+}
+
+.attendance-summary-label {
+    color: var(--muted);
+    font-size: 9px;
+    letter-spacing: .04em;
+    text-transform: uppercase
+}
+
+.attendance-summary>strong {
+    color: var(--ink);
+    font-size: 12px;
+    font-weight: 680
+}
+
+.attendance-summary>strong span {
+    color: var(--muted);
+    font-size: 10px;
+    font-weight: 500
+}
+
+.attendance-summary-percent {
+    color: var(--profile-accent, #668f7a);
+    font-size: 12px;
+    font-weight: 700
+}
+
+.attendance-summary-track {
+    grid-column: 1 / -1;
+    height: 4px;
+    overflow: hidden;
+    border-radius: 99px;
+    background: color-mix(in srgb, var(--profile-accent, #668f7a) 12%, var(--line))
+}
+
+.attendance-summary-track i {
+    display: block;
+    height: 100%;
+    border-radius: inherit;
+    background: var(--profile-accent, #668f7a);
+    transition: width .2s ease
+}
+
+.day-lesson-attendance {
+    display: grid;
+    gap: 5px
+}
+
+.day-lesson-attendance .agenda-event {
+    border-color: #dce8df;
+    background: #f7faf7
+}
+
+.day-attendance-controls {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 5px;
+    padding-left: 8px
+}
+
+.day-attendance-controls button,
+.day-attendance-status {
+    min-height: 26px;
+    padding: 4px 8px;
+    border: 1px solid var(--line);
+    border-radius: 7px;
+    background: var(--card);
+    color: var(--muted);
+    font-size: 9px;
+    line-height: 1.2
+}
+
+.day-attendance-controls button:hover {
+    border-color: #a8c3ae;
+    color: var(--green)
+}
+
+.day-attendance-controls button.is-present,
+.day-attendance-status.is-present {
+    border-color: #c8e1ce;
+    background: #eaf5ec;
+    color: #286342
+}
+
+.day-attendance-controls button.is-absent,
+.day-attendance-status.is-absent {
+    border-color: #efd8d3;
+    background: #fbefed;
+    color: #9b5148
+}
+
+.day-attendance-controls .attendance-clear {
+    border-color: transparent;
+    background: transparent;
+    text-decoration: underline;
+    text-underline-offset: 2px
+}
+
+.day-attendance-status {
+    justify-self: start;
+    margin-left: 8px
 }
 
 .course-components {
@@ -4802,6 +5385,41 @@ body[data-profile="loreta"] {
     box-shadow: 0 0 0 2px rgba(76, 128, 88, .08)
 }
 
+:root[data-theme="dark"] .attendance-summary {
+    border-color: #38443b;
+    background: #222923
+}
+
+:root[data-theme="dark"] .attendance-summary-track {
+    background: #38443b
+}
+
+:root[data-theme="dark"] .day-lesson-attendance .agenda-event {
+    border-color: #35453a;
+    background: #222923
+}
+
+:root[data-theme="dark"] .day-attendance-controls button,
+:root[data-theme="dark"] .day-attendance-status {
+    border-color: var(--line);
+    background: #262d28;
+    color: #c5cec7
+}
+
+:root[data-theme="dark"] .day-attendance-controls button.is-present,
+:root[data-theme="dark"] .day-attendance-status.is-present {
+    border-color: #3e6749;
+    background: #26392c;
+    color: #a8d2af
+}
+
+:root[data-theme="dark"] .day-attendance-controls button.is-absent,
+:root[data-theme="dark"] .day-attendance-status.is-absent {
+    border-color: #70453f;
+    background: #3a2927;
+    color: #e2a79e
+}
+
 :root[data-theme="dark"] .course-note-panel {
     border-color: #39413b;
     background: #252b27
@@ -4863,11 +5481,692 @@ body[data-profile="loreta"] {
     }
 
     .course-note-panel textarea {
-        min-height: 32px
+        min-height: 0
     }
 }
 
+/* Refined subject cards: calm surfaces, resilient layouts, and clearer reading order. */
+.course-section .course-grid {
+    align-items: stretch;
+    gap: 10px;
+    padding: 10px
+}
+
+.course-section .course-card {
+    --card-accent: var(--profile-accent, #64736a);
+    position: relative;
+    min-width: 0;
+    padding: 15px 16px;
+    border: 1px solid color-mix(in srgb, var(--card-accent) 11%, var(--line));
+    border-radius: 15px;
+    background: var(--card);
+    box-shadow: 0 1px 2px rgba(25, 35, 29, .025);
+    transition: border-color .18s ease, box-shadow .18s ease, background-color .18s ease
+}
+
+.course-section .course-card:hover {
+    transform: none;
+    border-color: color-mix(in srgb, var(--card-accent) 32%, var(--line));
+    background: color-mix(in srgb, var(--profile-wash, #f7f7f8) 18%, var(--card));
+    box-shadow: 0 4px 14px rgba(25, 35, 29, .055)
+}
+
+.course-card-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr);
+    gap: 16px;
+    align-items: stretch
+}
+
+.course-card-layout.has-split-modules {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 8px
+}
+
+.course-card-layout.has-note-action {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 16px;
+    align-items: stretch
+}
+
+.course-card-layout.has-note-panel {
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr);
+    gap: 16px;
+    align-items: stretch
+}
+
+.course-card-layout.has-split-modules.has-note-panel {
+    grid-template-columns: minmax(0, 1fr)
+}
+
+.course-card-layout.has-split-modules.has-note-action {
+    grid-template-columns: minmax(0, 1fr) minmax(110px, .35fr)
+}
+
+.course-card-layout.is-info-only {
+    grid-template-columns: minmax(0, 1fr)
+}
+
+.course-card-info {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0
+}
+
+.course-card-head {
+    display: flex;
+    width: 100%;
+    min-width: 0;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 8px
+}
+
+.course-card-head>div {
+    flex: 1;
+    min-width: 0
+}
+
+.course-card-head .edit-button {
+    position: absolute;
+    z-index: 1;
+    top: 8px;
+    right: 8px;
+    width: 30px;
+    height: 30px;
+    margin: 0;
+    border: 1px solid color-mix(in srgb, var(--card-accent) 14%, var(--line));
+    border-radius: 10px;
+    background: color-mix(in srgb, var(--profile-wash, #f7f7f8) 32%, var(--card));
+    color: var(--muted);
+    transition: border-color .16s ease, background .16s ease, color .16s ease
+}
+
+.course-card-head .edit-button:hover {
+    border-color: color-mix(in srgb, var(--card-accent) 42%, var(--line));
+    background: var(--profile-wash, #f7f7f8);
+    color: var(--card-accent)
+}
+
+.course-card-layout.has-edit-button .course-card-head > div {
+    padding-right: 38px
+}
+
+.course-card-layout.has-note-panel .course-note-slot {
+    align-self: start;
+    height: fit-content
+}
+
+.course-title-row {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 4px;
+    min-width: 0
+}
+
+.course-title-row .course-name {
+    flex: 0 1 auto;
+    width: fit-content;
+    min-width: 0;
+    color: var(--ink);
+    font-size: 13px;
+    font-weight: 620;
+    line-height: 1.4;
+    letter-spacing: -.018em;
+    overflow-wrap: anywhere
+}
+
+.course-title-row .course-credits {
+    flex: none;
+    margin-top: 0;
+    padding: 2px 8px;
+    border-color: color-mix(in srgb, var(--card-accent) 13%, var(--line));
+    border-radius: 99px;
+    background: color-mix(in srgb, var(--profile-wash, #f7f7f8) 55%, var(--card));
+    color: var(--muted);
+    font-size: 9px;
+    font-weight: 560
+}
+
+.course-section .course-card .course-dates {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 5px;
+    min-height: 18px;
+    margin: 7px 0 0;
+    color: var(--muted);
+    font-size: 10px;
+    line-height: 1.35
+}
+
+.course-section .course-card .year-tag {
+    flex: none;
+    color: var(--muted);
+    font-size: 9px;
+    font-variant-numeric: tabular-nums
+}
+
+.course-section .course-card .elective-tag,
+.course-section .course-card .next-tag,
+.course-section .course-card .past-tag {
+    display: inline-flex;
+    align-items: center;
+    min-height: 20px;
+    max-width: 100%;
+    padding: 3px 8px;
+    border: 1px solid transparent;
+    border-radius: 99px;
+    font-size: 9px;
+    line-height: 1.2;
+    overflow-wrap: anywhere
+}
+
+.course-section .course-card .elective-tag {
+    background: color-mix(in srgb, var(--card-accent) 8%, var(--card));
+    color: var(--muted)
+}
+
+.course-section .course-card .next-tag {
+    background: color-mix(in srgb, var(--card-accent) 10%, var(--card));
+    color: color-mix(in srgb, var(--card-accent) 82%, var(--ink))
+}
+
+.course-section .course-card .past-tag {
+    background: color-mix(in srgb, var(--muted) 8%, var(--card));
+    color: var(--muted)
+}
+
+.course-status-row {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    gap: 7px;
+    margin-top: auto;
+    padding-top: 14px
+}
+
+.course-status-row .course-note-add {
+    flex: none;
+    min-height: 32px;
+    margin: 0 0 0 auto;
+    padding: 4px 0 4px 8px;
+    white-space: nowrap
+}
+
+.course-note-slot {
+    display: flex;
+    min-width: 0;
+    align-items: flex-end;
+    justify-content: flex-end;
+    align-self: end;
+    padding-bottom: 2px
+}
+
+.course-card-layout.has-note-action .course-note-slot .course-note-add,
+.course-card-layout.has-split-modules.has-note-action .course-note-slot .course-note-add {
+    display: inline-flex;
+    width: auto;
+    min-height: 32px;
+    justify-self: auto;
+    align-self: auto;
+    grid-column: auto;
+    grid-row: auto;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 6px;
+    margin: 0;
+    padding: 4px 0 4px 8px;
+    border: 0;
+    border-radius: 8px;
+    background: transparent;
+    color: var(--muted);
+    font: inherit;
+    font-size: 10px;
+    transition: color .16s ease, background-color .16s ease
+}
+
+.course-note-slot .course-note-add:hover {
+    background: color-mix(in srgb, var(--profile-wash, #f7f7f8) 58%, transparent);
+    color: var(--card-accent)
+}
+
+.course-note-slot .course-note-add span {
+    position: static;
+    width: auto;
+    height: auto;
+    overflow: visible;
+    clip: auto;
+    white-space: nowrap
+}
+
+.course-note-slot .course-note-add svg {
+    width: 14px;
+    height: 14px;
+    stroke-width: 1.8
+}
+
+.course-status-row .edit-button {
+    margin: 0;
+    border-radius: 9px
+}
+
+.course-status-row .status-pill {
+    display: inline-flex;
+    align-items: center;
+    width: fit-content;
+    max-width: 100%;
+    min-height: 25px;
+    padding: 4px 9px;
+    border: 1px solid color-mix(in srgb, var(--card-accent) 10%, var(--line));
+    border-radius: 99px;
+    background: color-mix(in srgb, var(--muted) 5%, var(--card));
+    color: var(--muted);
+    font-size: 10px;
+    line-height: 1.35;
+    overflow-wrap: anywhere
+}
+
+.course-section .course-card.status-passed .course-status-row .status-pill,
+.course-section .course-card.status-partial .course-status-row .status-pill {
+    border-color: color-mix(in srgb, #55936b 20%, var(--line));
+    background: color-mix(in srgb, #55936b 9%, var(--card));
+    color: color-mix(in srgb, #347248 82%, var(--ink))
+}
+
+.course-section .course-card.status-scheduled .course-status-row .status-pill {
+    border-color: color-mix(in srgb, #7892b2 20%, var(--line));
+    background: color-mix(in srgb, #7892b2 8%, var(--card));
+    color: color-mix(in srgb, #58769b 85%, var(--ink))
+}
+
+.course-section .course-card.status-studying .course-status-row .status-pill {
+    border-color: color-mix(in srgb, #bf995c 20%, var(--line));
+    background: color-mix(in srgb, #bf995c 8%, var(--card));
+    color: color-mix(in srgb, #8a6428 82%, var(--ink))
+}
+
+.course-section .course-card.status-try .course-status-row .status-pill {
+    border-color: color-mix(in srgb, #c27969 20%, var(--line));
+    background: color-mix(in srgb, #c27969 8%, var(--card));
+    color: color-mix(in srgb, #8c5144 82%, var(--ink))
+}
+
+.course-section .course-card.status-later .course-status-row .status-pill {
+    background: color-mix(in srgb, var(--muted) 7%, var(--card))
+}
+
+.course-card-layout.has-note-action .course-status-row {
+    margin-top: auto
+}
+
+.course-card-layout.has-note-action,
+.course-card-layout.has-split-modules.has-note-action {
+    grid-template-columns: minmax(0, 1fr)
+}
+
+.course-card-layout.has-note-action .course-status-row .course-note-add {
+    align-self: center
+}
+
+.course-card-layout.has-note-action .course-note-slot {
+    display: none
+}
+
+.course-card-layout.has-note-panel .course-status-row {
+    margin-top: auto
+}
+
+.course-card-layout.has-split-modules .course-status-row {
+    margin-top: auto;
+    padding-top: 12px
+}
+
+.course-card-layout.has-split-modules .course-components {
+    margin-top: 8px
+}
+
+.course-component {
+    grid-template-columns: minmax(0, 1fr) minmax(112px, .72fr);
+    gap: 8px 12px;
+    padding: 11px 12px;
+    border-radius: 12px
+}
+
+.course-component-heading strong {
+    overflow-wrap: anywhere
+}
+
+.course-note-panel {
+    width: 100%;
+    height: fit-content;
+    min-height: 0;
+    align-self: start;
+    padding: 10px 12px;
+    border-color: color-mix(in srgb, var(--card-accent) 11%, var(--line));
+    border-radius: 12px;
+    background: color-mix(in srgb, var(--profile-wash, #f7f7f8) 22%, var(--card));
+    transition: border-color .16s ease, box-shadow .16s ease
+}
+
+.course-note-panel:focus-within {
+    border-color: color-mix(in srgb, var(--card-accent) 42%, var(--line));
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--card-accent) 10%, transparent)
+}
+
+.course-note-panel label {
+    color: var(--muted);
+    font-size: 9px;
+    letter-spacing: .08em;
+    text-transform: uppercase
+}
+
+.course-note-panel textarea {
+    display: block;
+    height: auto;
+    min-height: 0;
+    padding: 0;
+    overflow: hidden;
+    overflow-wrap: anywhere;
+    text-transform: lowercase
+}
+
+.course-note-panel .note-save-status {
+    min-height: 0;
+    margin-top: 0
+}
+
+.course-section.status-custom .course-card {
+    border-left: 3px solid var(--custom-status-color, #789);
+    padding-left: 14px
+}
+
+.course-section.status-custom .status-pill {
+    background: color-mix(in srgb, var(--custom-status-color, #789) 10%, var(--card));
+    color: var(--ink)
+}
+
+:root[data-theme="dark"] .course-card-head .edit-button {
+    border-color: color-mix(in srgb, var(--card-accent) 26%, var(--line));
+    background: color-mix(in srgb, var(--profile-wash, #252b27) 28%, var(--card));
+    color: var(--ink)
+}
+
+:root[data-theme="dark"] .course-card-head .edit-button:hover {
+    border-color: color-mix(in srgb, var(--card-accent) 48%, var(--line));
+    background: color-mix(in srgb, var(--profile-wash, #252b27) 46%, var(--card));
+    color: var(--card-accent)
+}
+
+:root[data-theme="dark"] .course-note-slot .course-note-add {
+    color: var(--muted)
+}
+
+:root[data-theme="dark"] .course-note-slot .course-note-add:hover {
+    background: color-mix(in srgb, var(--profile-wash, #252b27) 58%, transparent);
+    color: var(--card-accent)
+}
+
+:root[data-theme="dark"] .course-section .course-card {
+    --card-accent: var(--profile-accent, #9ba99f);
+    border-color: color-mix(in srgb, var(--card-accent) 16%, var(--line));
+    background: var(--card);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .12)
+}
+
+:root[data-theme="dark"] .course-section .course-card:hover {
+    border-color: color-mix(in srgb, var(--card-accent) 38%, var(--line));
+    background: color-mix(in srgb, var(--profile-wash, #252b27) 18%, var(--card));
+    box-shadow: 0 5px 16px rgba(0, 0, 0, .2)
+}
+
+:root[data-theme="dark"] .course-title-row .course-name {
+    color: var(--ink)
+}
+
+:root[data-theme="dark"] .course-section .course-card .course-credits {
+    border-color: color-mix(in srgb, var(--card-accent) 20%, var(--line));
+    background: color-mix(in srgb, var(--profile-wash, #252b27) 42%, var(--card));
+    color: var(--muted)
+}
+
+:root[data-theme="dark"] .course-section .course-card .next-tag {
+    background: color-mix(in srgb, #7892b2 17%, var(--card));
+    color: #c0d1e6
+}
+
+:root[data-theme="dark"] .course-section .course-card .past-tag,
+:root[data-theme="dark"] .course-section .course-card .elective-tag {
+    background: color-mix(in srgb, var(--muted) 12%, var(--card));
+    color: var(--muted)
+}
+
+:root[data-theme="dark"] .course-section .course-card .status-pill {
+    border-color: color-mix(in srgb, var(--card-accent) 18%, var(--line));
+    background: color-mix(in srgb, var(--muted) 9%, var(--card));
+    color: var(--ink)
+}
+
+:root[data-theme="dark"] .course-section .course-card.status-passed .course-status-row .status-pill,
+:root[data-theme="dark"] .course-section .course-card.status-partial .course-status-row .status-pill {
+    border-color: #41674d;
+    background: #2a4833;
+    color: #b6dfbf
+}
+
+:root[data-theme="dark"] .course-section .course-card.status-scheduled .course-status-row .status-pill {
+    border-color: #38495b;
+    background: #2b3745;
+    color: #c0d1e6
+}
+
+:root[data-theme="dark"] .course-section .course-card.status-studying .course-status-row .status-pill {
+    border-color: #514735;
+    background: #383122;
+    color: #e0c487
+}
+
+:root[data-theme="dark"] .course-section .course-card.status-try .course-status-row .status-pill {
+    border-color: #523a35;
+    background: #392c29;
+    color: #e4aaa0
+}
+
+:root[data-theme="dark"] .course-section .course-card.status-later .course-status-row .status-pill {
+    background: #303531;
+    color: #c1c9c3
+}
+
+:root[data-theme="dark"] .course-section.status-custom .course-card {
+    border-left-color: var(--custom-status-color, #789);
+    background: color-mix(in srgb, var(--custom-status-color, #789) 6%, var(--card))
+}
+
+:root[data-theme="dark"] .course-section.status-custom .status-pill {
+    background: color-mix(in srgb, var(--custom-status-color, #789) 16%, var(--card));
+    color: var(--ink)
+}
+
+:root[data-theme="dark"] .course-note-panel {
+    border-color: var(--line);
+    background: color-mix(in srgb, var(--profile-wash, #252b27) 22%, var(--card))
+}
+
+@media(max-width:900px) {
+    .course-section .course-grid {
+        grid-template-columns: minmax(0, 1fr)
+    }
+}
+
+@media(max-width:760px) {
+    .course-card-layout,
+    .course-card-layout.has-note-action,
+    .course-card-layout.has-note-panel,
+    .course-card-layout.has-split-modules.has-note-action {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 10px
+    }
+
+    .course-card-layout.has-note-panel .course-note-slot,
+    .course-card-layout.has-note-panel .course-note-panel {
+        align-self: start;
+        height: fit-content
+    }
+
+    .course-card-layout.has-split-modules,
+    .course-card-layout.has-split-modules.has-note-action {
+        grid-template-columns: minmax(0, 1fr)
+    }
+
+    .course-note-slot {
+        align-self: start;
+        justify-content: flex-end;
+        padding: 0
+    }
+
+    .course-status-row {
+        justify-content: space-between;
+        flex-wrap: nowrap
+    }
+
+    .course-status-row .status-pill {
+        min-width: 0
+    }
+
+    .course-section .course-card {
+        padding: 14px
+    }
+
+    .course-section.status-custom .course-card {
+        padding-left: 12px
+    }
+
+    .course-component {
+        grid-template-columns: minmax(0, 1fr) minmax(118px, .8fr);
+        gap: 8px 10px
+    }
+}
+
+@media(max-width:520px) {
+    .course-section .course-grid {
+        padding: 7px;
+        gap: 7px
+    }
+
+    .course-section .course-card {
+        padding: 13px
+    }
+
+    .course-section.status-custom .course-card {
+        padding-left: 11px
+    }
+
+    .course-title-row {
+        flex-wrap: nowrap
+    }
+
+    .course-card-head {
+        gap: 4px
+    }
+
+    .course-component {
+        grid-template-columns: minmax(0, 1fr) minmax(106px, .72fr);
+        gap: 7px
+    }
+
+    .course-component-heading {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 2px
+    }
+}
+
+.course-section .course-card.status-passed,
+.course-section .course-card.passed {
+    background: color-mix(in srgb, #55936b 5%, var(--card));
+    border-color: color-mix(in srgb, #55936b 18%, var(--line))
+}
+
+.course-section .course-card.status-partial {
+    background: color-mix(in srgb, #55936b 7%, var(--card));
+    border-color: color-mix(in srgb, #55936b 21%, var(--line))
+}
+
+.course-section .course-card.status-scheduled {
+    background: color-mix(in srgb, #7892b2 6%, var(--card));
+    border-color: color-mix(in srgb, #7892b2 19%, var(--line))
+}
+
+.course-section .course-card.status-studying {
+    background: color-mix(in srgb, #bf995c 7%, var(--card));
+    border-color: color-mix(in srgb, #bf995c 20%, var(--line))
+}
+
+.course-section .course-card.status-try {
+    background: color-mix(in srgb, #c27969 6%, var(--card));
+    border-color: color-mix(in srgb, #c27969 18%, var(--line))
+}
+
+.course-section .course-card.status-later {
+    background: color-mix(in srgb, var(--muted) 5%, var(--card));
+    border-color: color-mix(in srgb, var(--muted) 16%, var(--line))
+}
+
+:root[data-theme="dark"] .course-section .course-card.status-passed,
+:root[data-theme="dark"] .course-section .course-card.passed {
+    background: color-mix(in srgb, #55936b 18%, var(--card));
+    border-color: #355640
+}
+
+:root[data-theme="dark"] .course-section .course-card.status-partial {
+    background: color-mix(in srgb, #55936b 20%, var(--card));
+    border-color: #355944
+}
+
+:root[data-theme="dark"] .course-section .course-card.status-scheduled {
+    background: color-mix(in srgb, #7892b2 20%, var(--card));
+    border-color: #38495b
+}
+
+:root[data-theme="dark"] .course-section .course-card.status-studying {
+    background: color-mix(in srgb, #bf995c 20%, var(--card));
+    border-color: #51452c
+}
+
+:root[data-theme="dark"] .course-section .course-card.status-try {
+    background: color-mix(in srgb, #c27969 18%, var(--card));
+    border-color: #523a35
+}
+
+:root[data-theme="dark"] .course-section .course-card.status-later {
+    background: color-mix(in srgb, var(--muted) 12%, var(--card));
+    border-color: #3c423d
+}
+
 @media(max-width:430px) {
+    .notifications-toggle {
+        width: 36px;
+        min-width: 36px;
+        padding: 8px
+    }
+
+    .notifications-toggle>span:not(.notifications-badge) {
+        display: none
+    }
+
+    .notifications-dialog {
+        width: calc(100% - 20px)
+    }
+
+    .notifications-panel {
+        padding: 14px
+    }
+
     .course-card-layout {
         grid-template-columns: 1fr
     }
