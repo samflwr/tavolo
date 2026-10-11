@@ -1,13 +1,14 @@
 :root {
     color-scheme: light;
-    --paper: #f5f5f0;
+    --paper: #f5f4f6;
     --card: #fff;
-    --ink: #172c25;
-    --muted: #78817c;
-    --line: #e7e9e2;
-    --green: #174b3a;
-    --mint: #dff0e6;
-    --lime: #d9f27e;
+    --ink: #24212a;
+    --muted: #77737f;
+    --line: #e8e5eb;
+    --green: #45434e;
+    --green-hover: #34323d;
+    --mint: #ecebf0;
+    --lime: #e5e3ea;
     --amber: #fff1d9;
     --rose: #f9e7e4;
     --blue: #e8effa;
@@ -42,7 +43,7 @@ button {
 button:focus-visible,
 input:focus-visible,
 select:focus-visible {
-    outline: 3px solid #a8cb67;
+    outline: 3px solid var(--green, #174b3a);
     outline-offset: 2px
 }
 
@@ -647,7 +648,7 @@ a {
 }
 
 .auth-submit:hover {
-    background: #215c47
+    background: var(--green-hover, var(--green))
 }
 
 .email-actions {
@@ -670,7 +671,7 @@ a {
     border: 0;
     padding: 3px 0;
     background: transparent;
-    color: var(--green);
+    color: var(--profile-accent, var(--green));
     font-size: 11px;
     text-decoration: underline;
     text-underline-offset: 3px
@@ -1112,7 +1113,7 @@ a {
     padding: 14px 15px;
     border: 1px solid var(--line);
     border-radius: 14px;
-    background: color-mix(in srgb, var(--profile-wash, #f7f7f8) 40%, var(--card))
+    background: color-mix(in srgb, var(--profile-wash, #f7f7f8) 12%, var(--card))
 }
 
 .calendar-attendance-heading {
@@ -1162,11 +1163,11 @@ a {
 
 :root[data-theme="dark"] .calendar-attendance {
     border-color: var(--line);
-    background: #202521
+    background: var(--card)
 }
 
 :root[data-theme="dark"] .attendance-summaries .attendance-summary {
-    background: #222923
+    background: var(--card)
 }
 
 .calendar-layout {
@@ -1292,7 +1293,7 @@ button.calendar-cell:hover {
     width: 5px;
     height: 5px;
     border-radius: 50%;
-    background: #78987e
+    background: var(--profile-accent, #78987e)
 }
 
 .calendar-dots .dot-ar,
@@ -1993,7 +1994,7 @@ button.calendar-cell:hover {
 }
 
 .elective-item:focus-within {
-    outline: 3px solid #a8cb67;
+    outline: 3px solid var(--green, #174b3a);
     outline-offset: 2px;
 }
 
@@ -2047,15 +2048,16 @@ button.calendar-cell:hover {
 
 /* soft, group-first profile themes */
 :root {
-    --paper: #f5f5f7;
+    --paper: #f5f4f6;
     --card: #fff;
-    --ink: #1d1d1f;
-    --muted: #737780;
-    --line: #e6e7eb;
-    --green: #205b46;
-    --mint: #e7f1eb;
-    --lime: #dcebb8;
-    --shadow: 0 1px 3px rgba(20, 24, 28, .035);
+    --ink: #24212a;
+    --muted: #77737f;
+    --line: #e8e5eb;
+    --green: #45434e;
+    --green-hover: #34323d;
+    --mint: #ecebf0;
+    --lime: #e5e3ea;
+    --shadow: 0 1px 3px rgba(24, 21, 31, .04);
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif
 }
 
@@ -2336,9 +2338,9 @@ body {
 }
 
 .search-wrap:focus-within {
-    border-color: #aeb5bf;
+    border-color: var(--profile-accent, #aeb5bf);
     background: #fff;
-    box-shadow: 0 0 0 3px rgba(32, 91, 70, .09)
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--profile-accent, #205b46) 11%, transparent)
 }
 
 .search::placeholder {
@@ -3052,9 +3054,15 @@ body {
 }
 
 .profile-chip[data-profile="samir"] {
-    --profile-accent: #8064bd;
-    --profile-wash: #f3effa;
-    --profile-line: #e1d8f1
+    --profile-accent: #b94776;
+    --profile-wash: #fff0f5;
+    --profile-line: #f0cdda
+}
+
+.profile-chip[data-profile="giulia"] {
+    --profile-accent: #7653b5;
+    --profile-wash: #f3effb;
+    --profile-line: #dfd5f0
 }
 
 .profile-chip[data-profile="ciofy"] {
@@ -3082,9 +3090,15 @@ body {
 }
 
 body[data-profile="samir"] {
-    --profile-accent: #8064bd;
-    --profile-wash: #f3effa;
-    --profile-line: #e1d8f1
+    --profile-accent: #b94776;
+    --profile-wash: #fff0f5;
+    --profile-line: #f0cdda
+}
+
+body[data-profile="giulia"] {
+    --profile-accent: #7653b5;
+    --profile-wash: #f3effb;
+    --profile-line: #dfd5f0
 }
 
 body[data-profile="ciofy"] {
@@ -3296,6 +3310,217 @@ body[data-profile="loreta"] {
     margin: 0 0 14px
 }
 
+.study-toolbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px
+}
+
+.study-add-primary,.study-settings-button {
+    display: inline-flex; min-height: 38px; align-items: center; justify-content: center; gap: 6px; padding: 0 12px;
+    border: 1px solid var(--surface-line, var(--line)); border-radius: 10px; background: var(--surface-raised, var(--card));
+    color: var(--ink); font-size: 11px; font-weight: 580; transition: background .16s ease, border-color .16s ease, transform .16s ease
+}
+.study-add-primary svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round }
+.study-add-primary:hover,.study-settings-button:hover { border-color: color-mix(in srgb, var(--profile-accent, var(--ink)) 30%, var(--surface-line, var(--line))); background: var(--surface-hover, var(--card)) }
+.study-toolbar-actions .study-add-primary:disabled,.study-toolbar-actions .study-settings-button:disabled { cursor: not-allowed; opacity: .55 }
+.study-week-arrow svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round }
+.study-week-nav .study-week-today { font-weight: 600 }
+
+.study-suggest-button {
+    min-height: 38px;
+    padding: 0 12px;
+    border: 1px solid var(--surface-line, var(--line));
+    border-radius: 10px;
+    background: var(--surface-raised, var(--card));
+    color: var(--ink);
+    font-size: 11px;
+    transition: border-color .16s ease, background .16s ease, color .16s ease
+}
+
+.study-suggest-button:hover {
+    border-color: color-mix(in srgb, var(--profile-accent, var(--ink)) 30%, var(--surface-line, var(--line)));
+    background: var(--surface-hover, var(--card))
+}
+
+.study-suggest-button:focus-visible,
+.study-suggestion-item input:focus-visible {
+    outline: 2px solid var(--profile-accent, var(--ink));
+    outline-offset: 2px
+}
+
+.study-suggestion {
+    display: grid;
+    gap: 11px;
+    margin: 0 0 14px;
+    padding: 14px;
+    border: 1px solid var(--surface-line, var(--line));
+    border-radius: 14px;
+    background: var(--surface-base, var(--card))
+}
+
+.study-suggestion-heading {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px
+}
+
+.study-suggestion-heading h3 {
+    margin: 0;
+    font-size: 13px;
+    font-weight: 650;
+    letter-spacing: -.02em
+}
+
+.study-suggestion-heading p {
+    max-width: 620px;
+    margin: 4px 0 0;
+    color: var(--muted);
+    font-size: 10px
+}
+
+.study-suggestion-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 225px), 1fr));
+    gap: 7px
+}
+
+.study-suggestion-item {
+    display: grid;
+    grid-template-columns: auto minmax(62px, auto) minmax(0, 1fr);
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+    padding: 9px 10px;
+    border: 1px solid var(--surface-line, var(--line));
+    border-radius: 10px;
+    background: var(--surface-raised, var(--card));
+    cursor: pointer
+}
+
+.study-suggestion-item:has(input:not(:checked)) {
+    opacity: .58
+}
+
+.study-suggestion-item input {
+    width: 16px;
+    height: 16px;
+    margin: 0;
+    accent-color: var(--profile-accent, #667085)
+}
+
+.study-suggestion-date {
+    color: var(--profile-accent, var(--muted));
+    font-size: 10px;
+    font-weight: 620;
+    white-space: nowrap
+}
+
+.study-suggestion-copy {
+    display: grid;
+    min-width: 0;
+    gap: 2px
+}
+
+.study-suggestion-copy strong,
+.study-suggestion-copy span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap
+}
+
+.study-suggestion-copy strong {
+    font-size: 10px;
+    font-weight: 620
+}
+
+.study-suggestion-copy span {
+    color: var(--muted);
+    font-size: 9px
+}
+
+.study-suggestion-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px
+}
+
+.study-suggestion-actions [role="status"] {
+    color: var(--muted);
+    font-size: 10px
+}
+
+.study-suggestion-actions>div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 7px;
+    margin-left: auto
+}
+
+.study-suggestion-actions button {
+    min-height: 36px
+}
+
+.study-suggestion-actions .auth-secondary {
+    padding: 0 11px
+}
+
+.study-suggestion-actions .auth-submit {
+    padding: 0 13px
+}
+
+.study-suggestion-actions button:disabled {
+    cursor: not-allowed;
+    opacity: .48
+}
+
+@media(max-width:430px) {
+    .study-toolbar {
+        width: 100%
+    }
+
+    .study-toolbar-actions {
+        width: 100%;
+        flex-wrap: wrap
+    }
+
+    .study-toolbar-actions button {
+        flex: 1
+    }
+
+    .study-suggestion {
+        padding: 11px
+    }
+
+    .study-suggestion-actions {
+        align-items: flex-start;
+        flex-direction: column
+    }
+
+    .study-suggestion-actions>div {
+        width: 100%
+    }
+
+    .study-suggestion-actions>div button {
+        flex: 1
+    }
+}
+
+@media(max-width:360px) {
+    .study-week-nav {
+        flex-wrap: wrap;
+        justify-content: flex-start
+    }
+
+    #study-week-label {
+        width: 100%;
+        text-align: left
+    }
+}
+
 .study-week-nav {
     display: flex;
     align-items: center;
@@ -3325,26 +3550,37 @@ body[data-profile="loreta"] {
 }
 
 .study-metrics {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 7px;
     margin: 0 0 12px
 }
 
 .study-metric {
-    padding: 5px 8px;
+    display: grid;
+    min-width: 0;
+    gap: 2px;
+    padding: 9px 10px;
     border: 1px solid var(--line);
-    border-radius: 9px;
-    background: #fff;
+    border-radius: 11px;
+    background: var(--card);
     color: var(--muted);
-    font-size: 10px
+    font-size: 10px;
+    line-height: 1.3
 }
 
 .study-metric strong {
-    margin-right: 3px;
+    overflow: hidden;
     color: var(--ink);
-    font-weight: 600
+    font-size: 14px;
+    font-weight: 650;
+    font-variant-numeric: tabular-nums;
+    text-overflow: ellipsis;
+    white-space: nowrap
 }
+
+.study-metric strong small { color: var(--muted); font-size: 10px; font-weight: 500 }
+.study-metric>span { overflow-wrap: anywhere }
 
 .study-layout {
     display: grid;
@@ -3577,6 +3813,24 @@ body[data-profile="loreta"] {
     opacity: .72
 }
 
+.study-session.is-pending-today {
+    border-color: #e8c2bd;
+    background: #fff2f0
+}
+
+.study-session.is-pending-today .study-session-copy strong {
+    color: #8f4540
+}
+
+.study-session.is-pending-today .study-session-actions button {
+    border-color: #e6c4bf;
+    background: #fff9f8
+}
+
+.study-session.is-pending-today .study-session-actions button:hover {
+    background: #fae7e3
+}
+
 .study-session-copy {
     display: grid;
     gap: 3px;
@@ -3605,6 +3859,7 @@ body[data-profile="loreta"] {
 
 .study-session-actions {
     display: flex;
+    min-width: 0;
     flex-wrap: wrap;
     justify-content: flex-end;
     gap: 4px;
@@ -3720,6 +3975,8 @@ body[data-profile="loreta"] {
 }
 
 @media(max-width:430px) {
+    #study-view .section-heading { margin-bottom: 8px }
+    #study-view .study-intro { max-width: 34ch; font-size: 11px; line-height: 1.4 }
     .view-tabs {
         width: 100%;
         gap: 13px
@@ -3731,49 +3988,129 @@ body[data-profile="loreta"] {
     }
 
     .study-toolbar {
-        align-items: flex-start;
-        flex-direction: column
+        align-items: stretch;
+        flex-direction: column;
+        gap: 8px;
+        margin-bottom: 10px;
+        padding: 8px;
+        border: 1px solid var(--surface-line, var(--line));
+        border-radius: 16px;
+        background: var(--surface-base, var(--card))
     }
 
     .study-week-nav {
         width: 100%;
-        justify-content: space-between
+        min-height: 44px;
+        justify-content: space-between;
+        gap: 6px;
+        padding: 4px;
+        border: 1px solid var(--surface-line, var(--line));
+        border-radius: 13px;
+        background: var(--surface-raised, var(--paper))
     }
+
+    .study-week-nav #study-week-label {
+        min-width: 0;
+        flex: 1;
+        overflow: hidden;
+        color: var(--ink);
+        font-size: 11px;
+        font-weight: 620;
+        text-overflow: ellipsis;
+        white-space: nowrap
+    }
+
+    .study-week-nav .study-week-arrow {
+        width: 42px;
+        min-width: 42px;
+        min-height: 44px;
+        padding: 9px;
+        border: 0;
+        border-radius: 10px;
+        background: transparent;
+        color: var(--profile-accent, var(--ink))
+    }
+
+    .study-week-arrow svg,.study-add-primary svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round }
+    .study-week-nav .study-week-today { min-height: 44px; padding: 0 10px; border: 0; border-radius: 9px; background: color-mix(in srgb, var(--profile-accent, #718d73) 11%, var(--card)); color: var(--profile-accent, var(--ink)); font-size: 10px; font-weight: 650 }
+    .study-toolbar-actions { display: grid; width: 100%; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 6px }
+    .study-toolbar-actions button { width: 100%; min-width: 0; min-height: 44px; justify-content: center; margin: 0; padding: 7px 8px; border-radius: 10px; font-size: 10px; font-weight: 620; line-height: 1.25; text-align: center }
+    .study-toolbar-actions .study-add-primary { grid-column: 1 / -1; min-height: 46px; gap: 7px; border: 0; border-radius: 10px; background: var(--ink); color: #fff; font-size: 11px; box-shadow: none }
+    .study-toolbar-actions .study-suggest-button,.study-toolbar-actions .study-settings-button { border: 1px solid var(--surface-line, var(--line)); background: var(--surface-raised, var(--card)); color: var(--ink) }
+    .study-toolbar-actions .study-settings-button { display: inline-flex; align-items: center }
+    .study-toolbar-actions:has(#study-suggest-button.hidden) .study-settings-button { grid-column: 1 / -1 }
+    .study-toolbar-actions button:active { transform: scale(.985) }
+    .study-toolbar-actions button:focus-visible,.study-week-nav button:focus-visible { outline-offset: 2px }
 
     .study-week-grid {
         gap: 6px
     }
 
-    .study-day {
-        padding: 9px
+    .study-metrics {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 5px;
+        margin-bottom: 8px
     }
 
-    .study-day-head {
-        align-items: flex-start
-    }
+    .study-metric { min-height: 0; gap: 1px; padding: 6px 8px; border-radius: 8px; font-size: 9px }
+    .study-metric strong { font-size: 12px }
+
+    .study-layout,#study-sessions,.study-week-grid,.study-day-list,.study-session-copy { min-width: 0 }
+    .study-layout { gap: 7px }
+    .study-form-panel,.study-sessions { padding: 7px; border-radius: 11px }
+    .study-week-grid { display: grid; gap: 0; overflow: hidden; border: 1px solid var(--surface-line, var(--line)); border-radius: 12px; background: var(--surface-base, var(--card)) }
+    .study-day { min-width: 0; padding: 6px 9px; border: 0; border-bottom: 1px solid var(--surface-line, var(--line)); border-radius: 0; background: transparent }
+    .study-day:last-child { border-bottom: 0 }
+    .study-day.is-today { border-color: var(--surface-line, var(--line)); background: color-mix(in srgb, var(--profile-accent, #718d73) 6%, var(--card)) }
+    .study-day:has(.study-day-empty) .study-day-list { display: none }
+    .study-day-head { align-items: center; gap: 6px; margin: 0 }
+    .study-day-head strong { font-size: 10px }
+    .study-day-tools small { font-size: 9px }
+    .study-day-title small { padding: 1px 5px; border-radius: 99px; background: color-mix(in srgb, var(--profile-accent, #718d73) 10%, var(--card)); font-size: 8px }
 
     .study-day-title {
+        flex: 1;
         flex-wrap: wrap;
-        gap: 3px 6px
+        gap: 3px 5px
     }
 
+    .study-day-title strong { font-size: 10px }
+    .study-day-title span { font-size: 8px }
     .study-day-tools {
         flex: none;
-        gap: 5px
+        gap: 4px
     }
 
     .study-day-add {
+        min-height: 32px;
         padding: 4px 6px;
         font-size: 9px
     }
 
     .study-session {
-        grid-template-columns: 1fr
+        min-width: 0;
+        grid-template-columns: minmax(0, 1fr);
+        gap: 6px;
+        padding: 8px
     }
 
+    .study-session-copy { min-width: 0 }
+    .study-session-copy strong { white-space: normal; overflow-wrap: anywhere }
+    .study-session-copy span { overflow-wrap: anywhere }
     .study-session-actions {
-        justify-content: flex-start
+        min-width: 0;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        justify-content: stretch;
+        gap: 5px
     }
+    .study-session-actions button { min-width: 0; min-height: 38px; padding: 5px 6px; font-size: 9px; white-space: normal }
+    .study-recovery-list .study-session-actions,.study-archive .study-session-actions { grid-auto-flow: row }
+
+    .study-recovery,.study-archive { margin-top: 7px; padding: 8px }
+    .study-recovery-list { gap: 5px }
+    .study-week-nav { gap: 3px; padding: 3px }
+    .study-week-nav #study-week-label { font-size: 10px }
 
     .study-form {
         grid-template-columns: 1fr 1fr
@@ -3930,28 +4267,33 @@ body[data-profile="loreta"] {
 }
 
 .agenda-event.event-lesson {
-    border-color: #d6e6e3;
-    background: #f2f8f6
+    border-color: #d9e1e8;
+    background: #f3f6f9
 }
 
 .dot-lesson {
-    background: #4f9c8b !important
+    background: #71869c !important
 }
 
 .calendar-day-names .lesson-day-name {
-    color: #397c70
+    color: #61798f
 }
 
 :root[data-theme="dark"] {
     color-scheme: dark;
-    --paper: #151816;
-    --card: #202521;
-    --ink: #e7ece8;
-    --muted: #a1ada5;
-    --line: #363e39;
-    --green: #78b092;
-    --mint: #293d32;
-    --lime: #d9ed9a;
+    --paper: #151519;
+    --card: #212127;
+    --ink: #eeedf2;
+    --muted: #aaa6b1;
+    --line: #393740;
+    --green: #bcb7c7;
+    --green-hover: #d0cadb;
+    --mint: #2b2a31;
+    --lime: #34323c;
+    --profile-surface: #292830;
+    --profile-surface-raised: #302f36;
+    --profile-surface-soft: #24232a;
+    --profile-surface-input: #19181e;
     --amber: #403521;
     --rose: #402d2b;
     --blue: #293747;
@@ -3961,6 +4303,12 @@ body[data-profile="loreta"] {
 :root[data-theme="dark"] body {
     background: var(--paper);
     color: var(--ink)
+}
+
+:root[data-theme="dark"] .edit-dialog,
+:root[data-theme="dark"] .gate-card {
+    background: color-mix(in srgb, var(--paper) 84%, var(--card));
+    border-color: color-mix(in srgb, var(--profile-accent, var(--line)) 12%, var(--line))
 }
 
 :root[data-theme="dark"] .local-pill,
@@ -3990,7 +4338,7 @@ body[data-profile="loreta"] {
 }
 
 :root[data-theme="dark"] .next-card {
-    background: #27342b
+    background: color-mix(in srgb, var(--profile-wash, var(--card)) 20%, var(--card))
 }
 
 :root[data-theme="dark"] .view-tabs {
@@ -4003,7 +4351,7 @@ body[data-profile="loreta"] {
 
 :root[data-theme="dark"] .toolbar,
 :root[data-theme="dark"] .search-wrap {
-    background: #202521;
+    background: var(--card);
     border-color: var(--line)
 }
 
@@ -4023,8 +4371,38 @@ body[data-profile="loreta"] {
 :root[data-theme="dark"] .study-form select,
 :root[data-theme="dark"] #electives-search {
     border-color: var(--line);
-    background: #191e1b;
+    background: color-mix(in srgb, var(--paper) 34%, var(--card));
     color: var(--ink)
+}
+
+:root[data-theme="dark"] .course-section .course-card .course-credits,
+:root[data-theme="dark"] .course-section .course-card .course-note-panel,
+:root[data-theme="dark"] .course-section .course-card .edit-button {
+    background: color-mix(in srgb, var(--profile-wash, var(--card)) 18%, var(--card))
+}
+
+:root[data-theme="dark"] .calendar-card,
+:root[data-theme="dark"] .day-card,
+:root[data-theme="dark"] .agenda-card,
+:root[data-theme="dark"] .study-form-panel,
+:root[data-theme="dark"] .study-day,
+:root[data-theme="dark"] .study-recovery,
+:root[data-theme="dark"] .study-archive {
+    background: color-mix(in srgb, var(--profile-wash, var(--card)) 8%, var(--card))
+}
+
+:root[data-theme="dark"] .calendar-cell {
+    background: color-mix(in srgb, var(--profile-wash, var(--card)) 10%, var(--card))
+}
+
+:root[data-theme="dark"] button.calendar-cell:hover,
+:root[data-theme="dark"] .calendar-nav:hover,
+:root[data-theme="dark"] .today-button:hover,
+:root[data-theme="dark"] .filter-toggle:hover,
+:root[data-theme="dark"] .course-tools summary:hover,
+:root[data-theme="dark"] .study-week-nav button:hover,
+:root[data-theme="dark"] .study-session-actions button:hover {
+    background: color-mix(in srgb, var(--profile-wash, var(--card)) 24%, var(--card))
 }
 
 :root[data-theme="dark"] .search::placeholder,
@@ -4047,7 +4425,7 @@ body[data-profile="loreta"] {
 :root[data-theme="dark"] .edit-actions button,
 :root[data-theme="dark"] .elective-item {
     border-color: var(--line);
-    background: #252b27;
+    background: var(--card);
     color: var(--ink)
 }
 
@@ -4060,13 +4438,8 @@ body[data-profile="loreta"] {
 
 :root[data-theme="dark"] .course-tools-menu button:hover,
 :root[data-theme="dark"] .course-tools-menu label:hover,
-:root[data-theme="dark"] .filter-toggle:hover,
-:root[data-theme="dark"] .calendar-nav:hover,
-:root[data-theme="dark"] .today-button:hover,
-:root[data-theme="dark"] .study-week-nav button:hover,
-:root[data-theme="dark"] .study-form-panel>summary:hover,
-:root[data-theme="dark"] .study-session-actions button:hover {
-    background: #303832
+:root[data-theme="dark"] .study-form-panel>summary:hover {
+    background: color-mix(in srgb, var(--profile-wash, var(--card)) 24%, var(--card))
 }
 
 :root[data-theme="dark"] .course-tools-divider {
@@ -4077,7 +4450,7 @@ body[data-profile="loreta"] {
 :root[data-theme="dark"] .past-heading,
 :root[data-theme="dark"] .agenda-date-group summary {
     border-color: var(--line);
-    background: #242a26;
+    background: color-mix(in srgb, var(--profile-wash, var(--card)) 16%, var(--card));
     color: var(--ink)
 }
 
@@ -4157,7 +4530,7 @@ body[data-profile="loreta"] {
 }
 
 :root[data-theme="dark"] .calendar-cell {
-    background: #252b27;
+    background: color-mix(in srgb, var(--profile-wash, var(--card)) 10%, var(--card));
     color: var(--ink)
 }
 
@@ -4166,8 +4539,8 @@ body[data-profile="loreta"] {
 }
 
 :root[data-theme="dark"] button.calendar-cell:hover {
-    border-color: #56645a;
-    background: #303832
+    border-color: var(--profile-line, #56645a);
+    background: color-mix(in srgb, var(--profile-wash, var(--card)) 24%, var(--card))
 }
 
 :root[data-theme="dark"] .calendar-cell.selected {
@@ -4181,8 +4554,8 @@ body[data-profile="loreta"] {
 
 :root[data-theme="dark"] .agenda-event,
 :root[data-theme="dark"] .agenda-event.event-past {
-    border-color: #363e39;
-    background: #252b27;
+    border-color: var(--line);
+    background: color-mix(in srgb, var(--profile-wash, var(--card)) 10%, var(--card));
     color: var(--ink)
 }
 
@@ -4221,24 +4594,24 @@ body[data-profile="loreta"] {
 }
 
 :root[data-theme="dark"] .auth-tabs {
-    background: #252b27
+    background: color-mix(in srgb, var(--profile-wash, var(--card)) 22%, var(--card))
 }
 
 :root[data-theme="dark"] .auth-tab.active {
-    background: #3a433d;
-    color: var(--ink);
-    box-shadow: none
+    background: var(--card);
+    color: var(--profile-accent, var(--ink));
+    box-shadow: 0 1px 4px rgba(0, 0, 0, .2)
 }
 
 :root[data-theme="dark"] .auth-submit,
 :root[data-theme="dark"] .edit-actions button[type=submit],
 :root[data-theme="dark"] .gate-form button {
-    background: #347456;
+    background: var(--green, #347456);
     color: #fff
 }
 
 :root[data-theme="dark"] .text-button {
-    color: #9bd0ae
+    color: color-mix(in srgb, var(--profile-accent, #9bd0ae) 64%, var(--ink))
 }
 
 :root[data-theme="dark"] .gate-error,
@@ -4263,8 +4636,8 @@ body[data-profile="loreta"] {
 
 :root[data-theme="dark"] .elective-item:hover,
 :root[data-theme="dark"] .elective-item:has(input:checked) {
-    border-color: #526359;
-    background: #2b352e
+    border-color: var(--profile-line, #526359);
+    background: color-mix(in srgb, var(--profile-wash, var(--card)) 38%, var(--card))
 }
 
 :root[data-theme="dark"] .elective-item:has(input:disabled) {
@@ -4291,9 +4664,27 @@ body[data-profile="loreta"] {
     background: #252a26
 }
 
+:root[data-theme="dark"] .study-session.is-pending-today {
+    border-color: #70453f;
+    background: #3a2927
+}
+
+:root[data-theme="dark"] .study-session.is-pending-today .study-session-copy strong {
+    color: #e2a79e
+}
+
+:root[data-theme="dark"] .study-session.is-pending-today .study-session-actions button {
+    border-color: #70453f;
+    background: #302523
+}
+
+:root[data-theme="dark"] .study-session.is-pending-today .study-session-actions button:hover {
+    background: #48302d
+}
+
 :root[data-theme="dark"] .study-day.is-today {
     border-color: var(--profile-line, #526359);
-    background: var(--profile-wash, #252b27)
+    background: color-mix(in srgb, var(--profile-wash, #252b27) 38%, var(--card))
 }
 
 :root[data-theme="dark"] .profile-chip {
@@ -4307,36 +4698,72 @@ body[data-profile="loreta"] {
 }
 
 :root[data-theme="dark"] body[data-profile="samir"] {
+    --profile-accent: #e88fb1;
+    --profile-wash: #3b2932;
+    --profile-line: #684454;
+    --profile-surface: #2d252b;
+    --profile-surface-raised: #352a32;
+    --profile-surface-soft: #2a2329;
+    --profile-surface-input: #1c191d
+}
+
+:root[data-theme="dark"] body[data-profile="giulia"] {
     --profile-accent: #b69be8;
     --profile-wash: #302a3b;
-    --profile-line: #4c4061
+    --profile-line: #4c4061;
+    --profile-surface: #292630;
+    --profile-surface-raised: #302b39;
+    --profile-surface-soft: #25222c;
+    --profile-surface-input: #1b191f
 }
 
 :root[data-theme="dark"] body[data-profile="ciofy"] {
     --profile-accent: #8ab7e2;
     --profile-wash: #29343f;
-    --profile-line: #3e566b
+    --profile-line: #3e566b;
+    --profile-surface: #252a30;
+    --profile-surface-raised: #2b3239;
+    --profile-surface-soft: #22272d;
+    --profile-surface-input: #191c20
 }
 
 :root[data-theme="dark"] body[data-profile="claudia"] {
     --profile-accent: #ed9292;
     --profile-wash: #392b2b;
-    --profile-line: #594040
+    --profile-line: #594040;
+    --profile-surface: #2d2626;
+    --profile-surface-raised: #342a2a;
+    --profile-surface-soft: #292222;
+    --profile-surface-input: #1d1919
 }
 
 :root[data-theme="dark"] body[data-profile="momo"] {
     --profile-accent: #e3c46a;
     --profile-wash: #373326;
-    --profile-line: #554c32
+    --profile-line: #554c32;
+    --profile-surface: #2c2a24;
+    --profile-surface-raised: #343127;
+    --profile-surface-soft: #28261f;
+    --profile-surface-input: #1b1a16
 }
 
 :root[data-theme="dark"] body[data-profile="loreta"] {
     --profile-accent: #91c59c;
     --profile-wash: #29372d;
-    --profile-line: #3d5944
+    --profile-line: #3d5944;
+    --profile-surface: #252b27;
+    --profile-surface-raised: #2b332d;
+    --profile-surface-soft: #212722;
+    --profile-surface-input: #191c19
 }
 
 :root[data-theme="dark"] .profile-chip[data-profile="samir"] {
+    --profile-accent: #e88fb1;
+    --profile-wash: #3b2932;
+    --profile-line: #684454
+}
+
+:root[data-theme="dark"] .profile-chip[data-profile="giulia"] {
     --profile-accent: #b69be8;
     --profile-wash: #302a3b;
     --profile-line: #4c4061
@@ -4386,16 +4813,16 @@ body[data-profile="loreta"] {
 }
 
 :root[data-theme="dark"] .agenda-event.event-lesson {
-    border-color: #385a53;
-    background: #243832
+    border-color: #3c4a55;
+    background: #252e36
 }
 
 :root[data-theme="dark"] .dot-lesson {
-    background: #72bda9 !important
+    background: #91a8bd !important
 }
 
 :root[data-theme="dark"] .calendar-day-names .lesson-day-name {
-    color: #84c8b5
+    color: #a6bacb
 }
 
 :root[data-theme="dark"] .progress-track {
@@ -4466,6 +4893,98 @@ body[data-profile="loreta"] {
     stroke-width: 1.7;
     stroke-linecap: round;
     stroke-linejoin: round
+}
+
+.useful-links {
+    margin-top: 34px
+}
+
+.useful-links .section-heading {
+    margin-bottom: 13px
+}
+
+.useful-links .section-title {
+    margin: 0;
+    color: var(--ink);
+    font-size: 20px;
+    font-weight: 630;
+    letter-spacing: -.04em
+}
+
+.useful-links-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px
+}
+
+.useful-link-card {
+    display: flex;
+    min-width: 0;
+    min-height: 76px;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 14px 15px;
+    border: 1px solid var(--line);
+    border-radius: 13px;
+    background: var(--card);
+    color: var(--ink);
+    text-decoration: none;
+    transition: border-color .16s ease, transform .16s ease, box-shadow .16s ease
+}
+
+.useful-link-card:hover {
+    transform: translateY(-2px);
+    border-color: #bdc9bf;
+    box-shadow: var(--shadow)
+}
+
+.useful-link-card:focus-visible {
+    outline: 2px solid var(--profile-accent, var(--green));
+    outline-offset: 3px
+}
+
+.useful-link-copy {
+    display: grid;
+    min-width: 0;
+    gap: 4px
+}
+
+.useful-link-copy strong {
+    font-size: 12px;
+    font-weight: 650
+}
+
+.useful-link-copy span {
+    color: var(--muted);
+    font-size: 10px;
+    line-height: 1.4
+}
+
+.useful-link-arrow {
+    flex: none;
+    color: var(--muted);
+    font-size: 17px
+}
+
+:root[data-theme="dark"] .useful-link-card:hover {
+    border-color: #56655a
+}
+
+@media(max-width:680px) {
+    .useful-links {
+        margin-top: 27px
+    }
+
+    .useful-links-grid {
+        grid-template-columns: 1fr;
+        gap: 8px
+    }
+
+    .useful-link-card {
+        min-height: 64px;
+        padding: 12px 13px
+    }
 }
 
 .notifications-badge {
@@ -5067,8 +5586,8 @@ body[data-profile="loreta"] {
 }
 
 .day-lesson-attendance .agenda-event {
-    border-color: #dce8df;
-    background: #f7faf7
+    border-color: color-mix(in srgb, var(--profile-accent, #71869c) 12%, var(--line));
+    background: color-mix(in srgb, var(--profile-accent, #71869c) 5%, var(--card))
 }
 
 .day-attendance-controls {
@@ -5092,8 +5611,8 @@ body[data-profile="loreta"] {
 }
 
 .day-attendance-controls button:hover {
-    border-color: #a8c3ae;
-    color: var(--green)
+    border-color: var(--profile-line, #a8c3ae);
+    color: var(--profile-accent, var(--green))
 }
 
 .day-attendance-controls button.is-present,
@@ -5395,8 +5914,8 @@ body[data-profile="loreta"] {
 }
 
 :root[data-theme="dark"] .day-lesson-attendance .agenda-event {
-    border-color: #35453a;
-    background: #222923
+    border-color: color-mix(in srgb, var(--profile-accent, #91a8bd) 22%, var(--line));
+    background: color-mix(in srgb, var(--profile-accent, #91a8bd) 9%, var(--card))
 }
 
 :root[data-theme="dark"] .day-attendance-controls button,
@@ -5493,7 +6012,7 @@ body[data-profile="loreta"] {
 }
 
 .course-section .course-card {
-    --card-accent: var(--profile-accent, #64736a);
+    --card-accent: color-mix(in srgb, var(--profile-accent, #64736a) 38%, var(--muted));
     position: relative;
     min-width: 0;
     padding: 15px 16px;
@@ -5506,8 +6025,8 @@ body[data-profile="loreta"] {
 
 .course-section .course-card:hover {
     transform: none;
-    border-color: color-mix(in srgb, var(--card-accent) 32%, var(--line));
-    background: color-mix(in srgb, var(--profile-wash, #f7f7f8) 18%, var(--card));
+    border-color: color-mix(in srgb, var(--card-accent) 22%, var(--line));
+    background: color-mix(in srgb, var(--profile-wash, #f7f7f8) 8%, var(--card));
     box-shadow: 0 4px 14px rgba(25, 35, 29, .055)
 }
 
@@ -5848,9 +6367,9 @@ body[data-profile="loreta"] {
     min-height: 0;
     align-self: start;
     padding: 10px 12px;
-    border-color: color-mix(in srgb, var(--card-accent) 11%, var(--line));
+    border-color: color-mix(in srgb, var(--card-accent) 8%, var(--line));
     border-radius: 12px;
-    background: color-mix(in srgb, var(--profile-wash, #f7f7f8) 22%, var(--card));
+    background: color-mix(in srgb, var(--profile-wash, #f7f7f8) 10%, var(--card));
     transition: border-color .16s ease, box-shadow .16s ease
 }
 
@@ -5913,7 +6432,7 @@ body[data-profile="loreta"] {
 }
 
 :root[data-theme="dark"] .course-section .course-card {
-    --card-accent: var(--profile-accent, #9ba99f);
+    --card-accent: color-mix(in srgb, var(--profile-accent, #9ba99f) 38%, var(--muted));
     border-color: color-mix(in srgb, var(--card-accent) 16%, var(--line));
     background: var(--card);
     box-shadow: 0 1px 2px rgba(0, 0, 0, .12)
@@ -6197,3 +6716,1204 @@ body[data-profile="loreta"] {
         min-height: 32px
     }
 }
+
+/* Profile-aware accents unify actions and navigation; status colors stay semantic. */
+body[data-profile] {
+    --green: color-mix(in srgb, var(--profile-accent) 68%, var(--ink));
+    --green-hover: color-mix(in srgb, var(--green) 88%, var(--ink));
+    --mint: color-mix(in srgb, var(--profile-wash) 74%, var(--card));
+    --lime: color-mix(in srgb, var(--profile-accent) 12%, var(--card))
+}
+
+:root[data-theme="dark"] body[data-profile] {
+    --green: color-mix(in srgb, var(--profile-accent) 46%, var(--paper));
+    --green-hover: color-mix(in srgb, var(--green) 88%, var(--paper));
+    --mint: color-mix(in srgb, var(--profile-wash) 74%, var(--card));
+    --lime: color-mix(in srgb, var(--profile-accent) 24%, var(--card))
+}
+
+/* Keep the profile identity subtle in subjects, where status colors carry the meaning. */
+body[data-profile] .course-section {
+    border-color: color-mix(in srgb, var(--profile-accent) 8%, var(--line))
+}
+
+body[data-profile] .course-section .group-heading {
+    border-bottom-color: color-mix(in srgb, var(--profile-accent) 7%, var(--line));
+    background: color-mix(in srgb, var(--profile-wash) 22%, var(--card))
+}
+
+body[data-profile] .course-section .group-count {
+    background: color-mix(in srgb, var(--profile-accent) 6%, var(--card));
+    color: var(--muted)
+}
+
+body[data-profile] .view-tab.active:after {
+    background: color-mix(in srgb, var(--profile-accent) 62%, var(--ink))
+}
+
+body[data-profile] .calendar-cell.selected {
+    background: color-mix(in srgb, var(--profile-wash) 34%, var(--card))
+}
+
+body[data-profile] .calendar-cell.today .calendar-number {
+    color: #fff
+}
+
+body[data-profile] .auth-submit,
+body[data-profile] .edit-actions button[type=submit],
+body[data-profile] .gate-form button,
+body[data-profile] .view-tab.active:not(:focus-visible) {
+    box-shadow: 0 2px 7px color-mix(in srgb, var(--profile-accent) 16%, transparent)
+}
+
+:root[data-theme="dark"] body[data-profile] .view-tab.active:after {
+    background: color-mix(in srgb, var(--profile-accent) 70%, var(--ink))
+}
+
+:root[data-theme="dark"] body[data-profile] .calendar-cell.selected {
+    background: color-mix(in srgb, var(--profile-wash) 55%, var(--card))
+}
+
+body[data-profile] .study-metric {
+    border-color: color-mix(in srgb, var(--profile-accent) 18%, var(--line));
+    background: color-mix(in srgb, var(--profile-wash) 58%, var(--card))
+}
+
+:root[data-theme="dark"] body[data-profile] .course-section .group-heading {
+    background: color-mix(in srgb, var(--profile-wash) 22%, var(--card))
+}
+
+:root[data-theme="dark"] body[data-profile] .course-section .group-count {
+    background: color-mix(in srgb, var(--profile-accent) 12%, var(--card));
+    color: var(--muted)
+}
+
+:root[data-theme="dark"] body[data-profile] .study-metric {
+    background: color-mix(in srgb, var(--profile-wash) 58%, var(--card))
+}
+
+/* A restrained neutral surface system keeps profile color present without tinting every panel green. */
+body[data-profile] {
+    --surface-base: var(--profile-surface, color-mix(in srgb, var(--profile-wash) 4%, var(--card)));
+    --surface-raised: var(--profile-surface-raised, color-mix(in srgb, var(--profile-wash) 7%, var(--card)));
+    --surface-soft: var(--profile-surface-soft, color-mix(in srgb, var(--profile-wash) 15%, #f7f6f8));
+    --surface-hover: color-mix(in srgb, var(--profile-wash) 28%, #f4f2f6);
+    --surface-input: var(--profile-surface-input, color-mix(in srgb, var(--profile-wash) 5%, #fff));
+    --surface-line: color-mix(in srgb, var(--profile-accent) 13%, var(--line))
+}
+
+:root[data-theme="dark"] body[data-profile] {
+    --surface-base: var(--profile-surface, color-mix(in srgb, var(--profile-wash) 5%, var(--card)));
+    --surface-raised: var(--profile-surface-raised, color-mix(in srgb, var(--profile-wash) 10%, #24232a));
+    --surface-soft: var(--profile-surface-soft, color-mix(in srgb, var(--profile-wash) 16%, #24232a));
+    --surface-hover: color-mix(in srgb, var(--profile-wash) 25%, #292830);
+    --surface-input: var(--profile-surface-input, color-mix(in srgb, var(--profile-wash) 6%, #1a191f));
+    --surface-line: color-mix(in srgb, var(--profile-accent) 17%, var(--line))
+}
+
+body[data-profile] .quiet-button,
+body[data-profile] .backup-button,
+body[data-profile] .filter-toggle,
+body[data-profile] .course-tools summary,
+body[data-profile] .course-tools-menu,
+body[data-profile] .course-tools-menu button,
+body[data-profile] .calendar-nav,
+body[data-profile] .today-button,
+body[data-profile] .study-week-nav button,
+body[data-profile] .study-form-panel > summary,
+body[data-profile] .study-session-actions button,
+body[data-profile] .study-form .study-cancel-edit,
+body[data-profile] .auth-secondary,
+body[data-profile] .edit-actions button,
+body[data-profile] .elective-item,
+body[data-profile] .calendar-filter,
+body[data-profile] .lesson-year-head select,
+body[data-profile] .profile-picker select {
+    border-color: var(--surface-line);
+    background: var(--surface-raised)
+}
+
+body[data-profile] .course-tools-menu button:hover,
+body[data-profile] .course-tools-menu label:hover,
+body[data-profile] .filter-toggle:hover,
+body[data-profile] .course-tools summary:hover,
+body[data-profile] .calendar-nav:hover,
+body[data-profile] .today-button:hover,
+body[data-profile] .study-week-nav button:hover,
+body[data-profile] .study-session-actions button:hover,
+body[data-profile] .profile-picker select:hover {
+    border-color: var(--profile-line);
+    background: var(--surface-hover)
+}
+
+body[data-profile] .auth-form input,
+body[data-profile] .auth-form select,
+body[data-profile] .profile-claim input,
+body[data-profile] .profile-claim select,
+body[data-profile] .gate-form input,
+body[data-profile] .edit-form select,
+body[data-profile] .edit-form input,
+body[data-profile] .study-form input,
+body[data-profile] .study-form select,
+body[data-profile] .course-actions select,
+body[data-profile] .grade-input,
+body[data-profile] .filter-select,
+body[data-profile] .calendar-filter,
+body[data-profile] .general-notes textarea,
+body[data-profile] .course-note-panel textarea,
+body[data-profile] #electives-search,
+body[data-profile] .announcement-form input:not([type="radio"]):not([type="checkbox"]),
+body[data-profile] .announcement-form textarea {
+    border-color: var(--surface-line);
+    background: var(--surface-input)
+}
+
+body[data-profile] .toolbar,
+body[data-profile] .search-wrap {
+    background: var(--surface-soft)
+}
+
+body[data-profile] .course-section,
+body[data-profile] .course-section .group-heading,
+body[data-profile] .calendar-card,
+body[data-profile] .day-card,
+body[data-profile] .agenda-card,
+body[data-profile] .calendar-attendance,
+body[data-profile] .study-form-panel,
+body[data-profile] .study-day,
+body[data-profile] .study-session:not(.is-pending-today),
+body[data-profile] .study-recovery,
+body[data-profile] .study-archive,
+body[data-profile] .study-metric,
+body[data-profile] .course-tools-menu {
+    border-color: var(--surface-line);
+    background: var(--surface-base)
+}
+
+body[data-profile] .course-section .group-heading {
+    background: var(--surface-soft)
+}
+
+body[data-profile] .course-section .course-card {
+    border-color: var(--surface-line);
+    background: var(--surface-base)
+}
+
+body[data-profile] .course-section .course-card .course-name,
+body[data-profile] .course-section .course-card.status-passed .course-name,
+body[data-profile] .course-section .course-card.status-partial .course-name {
+    color: var(--ink)
+}
+
+body[data-profile] .course-section .course-card .course-credits,
+body[data-profile] .course-section .course-card .edit-button,
+body[data-profile] .course-section .course-card .course-note-panel {
+    border-color: var(--surface-line);
+    background: var(--surface-soft)
+}
+
+body[data-profile] .course-section .course-card .status-pill {
+    background: var(--surface-soft)
+}
+
+body[data-profile] .course-section .course-card.status-passed .course-status-row .status-pill,
+body[data-profile] .course-section .course-card.status-partial .course-status-row .status-pill {
+    border-color: color-mix(in srgb, #55936b 20%, var(--line));
+    background: color-mix(in srgb, #55936b 9%, var(--card));
+    color: color-mix(in srgb, #347248 82%, var(--ink))
+}
+
+body[data-profile] .course-section .course-card.status-scheduled .course-status-row .status-pill {
+    border-color: color-mix(in srgb, #7892b2 20%, var(--line));
+    background: color-mix(in srgb, #7892b2 8%, var(--card));
+    color: color-mix(in srgb, #58769b 85%, var(--ink))
+}
+
+body[data-profile] .course-section .course-card.status-studying .course-status-row .status-pill {
+    border-color: color-mix(in srgb, #bf995c 20%, var(--line));
+    background: color-mix(in srgb, #bf995c 8%, var(--card));
+    color: color-mix(in srgb, #8a6428 82%, var(--ink))
+}
+
+body[data-profile] .course-section .course-card.status-try .course-status-row .status-pill {
+    border-color: color-mix(in srgb, #c27969 20%, var(--line));
+    background: color-mix(in srgb, #c27969 8%, var(--card));
+    color: color-mix(in srgb, #8c5144 82%, var(--ink))
+}
+
+body[data-profile] .calendar-cell,
+body[data-profile] .calendar-cell:hover,
+body[data-profile] .calendar-cell.selected {
+    background: var(--surface-base)
+}
+
+body[data-profile] .calendar-cell.selected {
+    border-color: var(--profile-accent);
+    box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--profile-accent) 12%, transparent)
+}
+
+body[data-profile] .calendar-cell.today .calendar-number {
+    background: var(--green);
+    color: #fff
+}
+
+body[data-profile] .general-notes textarea,
+body[data-profile] .course-note-panel textarea {
+    color: var(--ink)
+}
+
+:root[data-theme="dark"] body[data-profile] .course-section .course-card.status-passed,
+:root[data-theme="dark"] body[data-profile] .course-section .course-card.passed,
+:root[data-theme="dark"] body[data-profile] .course-section .course-card.status-partial,
+:root[data-theme="dark"] body[data-profile] .course-section .course-card.status-scheduled,
+:root[data-theme="dark"] body[data-profile] .course-section .course-card.status-studying,
+:root[data-theme="dark"] body[data-profile] .course-section .course-card.status-try,
+:root[data-theme="dark"] body[data-profile] .course-section .course-card.status-later,
+:root[data-theme="dark"] body[data-profile] .course-section .course-card {
+    border-color: var(--surface-line);
+    background: var(--surface-base)
+}
+
+:root[data-theme="dark"] body[data-profile] .course-section .course-card .course-note-panel,
+:root[data-theme="dark"] body[data-profile] .course-section .course-card .course-credits,
+:root[data-theme="dark"] body[data-profile] .course-section .course-card .edit-button {
+    background: var(--surface-soft)
+}
+
+:root[data-theme="dark"] body[data-profile] .course-section .course-card .next-tag,
+:root[data-theme="dark"] body[data-profile] .course-section .course-card .elective-tag,
+:root[data-theme="dark"] body[data-profile] .course-section .course-card .past-tag {
+    background: var(--surface-soft);
+    color: var(--muted)
+}
+
+:root[data-theme="dark"] body[data-profile] .calendar-cell {
+    background: var(--surface-base)
+}
+
+:root[data-theme="dark"] body[data-profile] .calendar-cell.selected {
+    background: color-mix(in srgb, var(--profile-wash) 42%, var(--card))
+}
+
+:root[data-theme="dark"] body[data-profile] .agenda-event:not(.event-planned),
+:root[data-theme="dark"] body[data-profile] .agenda-date-group,
+:root[data-theme="dark"] body[data-profile] .agenda-date-group summary {
+    border-color: var(--surface-line);
+    background: var(--surface-base)
+}
+
+:root[data-theme="dark"] body[data-profile] .study-session:not(.is-pending-today),
+:root[data-theme="dark"] body[data-profile] .study-day,
+:root[data-theme="dark"] body[data-profile] .study-form-panel,
+:root[data-theme="dark"] body[data-profile] .study-recovery,
+:root[data-theme="dark"] body[data-profile] .study-archive,
+:root[data-theme="dark"] body[data-profile] .calendar-card,
+:root[data-theme="dark"] body[data-profile] .day-card,
+:root[data-theme="dark"] body[data-profile] .agenda-card,
+:root[data-theme="dark"] body[data-profile] .calendar-attendance,
+:root[data-theme="dark"] body[data-profile] .study-metric {
+    border-color: var(--surface-line);
+    background: var(--surface-base)
+}
+
+:root[data-theme="dark"] body[data-profile] .study-day.is-today {
+    background: color-mix(in srgb, var(--profile-wash) 34%, var(--card))
+}
+
+:root[data-theme="dark"] body[data-profile] .calendar-nav,
+:root[data-theme="dark"] body[data-profile] .today-button,
+:root[data-theme="dark"] body[data-profile] .filter-toggle,
+:root[data-theme="dark"] body[data-profile] .course-tools summary,
+:root[data-theme="dark"] body[data-profile] .study-week-nav button,
+:root[data-theme="dark"] body[data-profile] .study-session-actions button,
+:root[data-theme="dark"] body[data-profile] .edit-actions button,
+:root[data-theme="dark"] body[data-profile] .auth-secondary,
+:root[data-theme="dark"] body[data-profile] .elective-item,
+:root[data-theme="dark"] body[data-profile] .course-tools-menu {
+    border-color: var(--surface-line);
+    background: var(--surface-raised)
+}
+
+:root[data-theme="dark"] body[data-profile] .auth-form input,
+:root[data-theme="dark"] body[data-profile] .auth-form select,
+:root[data-theme="dark"] body[data-profile] .profile-claim input,
+:root[data-theme="dark"] body[data-profile] .profile-claim select,
+:root[data-theme="dark"] body[data-profile] .gate-form input,
+:root[data-theme="dark"] body[data-profile] .edit-form select,
+:root[data-theme="dark"] body[data-profile] .edit-form input,
+:root[data-theme="dark"] body[data-profile] .study-form input,
+:root[data-theme="dark"] body[data-profile] .study-form select,
+:root[data-theme="dark"] body[data-profile] .course-actions select,
+:root[data-theme="dark"] body[data-profile] .grade-input,
+:root[data-theme="dark"] body[data-profile] .filter-select,
+:root[data-theme="dark"] body[data-profile] .calendar-filter,
+:root[data-theme="dark"] body[data-profile] .general-notes textarea,
+:root[data-theme="dark"] body[data-profile] .course-note-panel textarea,
+:root[data-theme="dark"] body[data-profile] #electives-search {
+    border-color: var(--surface-line);
+    background: var(--surface-input)
+}
+
+:root[data-theme="dark"] body[data-profile] .toolbar,
+:root[data-theme="dark"] body[data-profile] .search-wrap {
+    background: var(--surface-soft)
+}
+
+:root[data-theme="dark"] body[data-profile] .search-wrap:focus-within,
+:root[data-theme="dark"] body[data-profile] .course-section .course-card .course-note-panel:focus-within {
+    border-color: var(--profile-accent);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--profile-accent) 15%, transparent)
+}
+
+:root[data-theme="dark"] body[data-profile] .calendar-nav:hover,
+:root[data-theme="dark"] body[data-profile] .today-button:hover,
+:root[data-theme="dark"] body[data-profile] .filter-toggle:hover,
+:root[data-theme="dark"] body[data-profile] .course-tools summary:hover,
+:root[data-theme="dark"] body[data-profile] .study-week-nav button:hover,
+:root[data-theme="dark"] body[data-profile] .study-session-actions button:hover,
+:root[data-theme="dark"] body[data-profile] .elective-item:hover,
+:root[data-theme="dark"] body[data-profile] .elective-item:has(input:checked) {
+    background: var(--surface-hover)
+}
+
+:root[data-theme="dark"] body[data-profile] .auth-tabs,
+:root[data-theme="dark"] body[data-profile] .lesson-year-group,
+:root[data-theme="dark"] body[data-profile] .lesson-choice,
+:root[data-theme="dark"] body[data-profile] .profile-picker select {
+    border-color: var(--surface-line);
+    background: var(--surface-soft)
+}
+
+:root[data-theme="dark"] body[data-profile] .auth-tab.active {
+    background: var(--surface-raised);
+    color: var(--profile-accent)
+}
+
+:root[data-theme="dark"] body[data-profile] .agenda-event.event-lesson,
+:root[data-theme="dark"] body[data-profile] .day-lesson-attendance .agenda-event {
+    border-color: color-mix(in srgb, var(--profile-accent) 25%, var(--line));
+    background: color-mix(in srgb, var(--profile-accent) 8%, var(--card))
+}
+
+:root[data-theme="dark"] body[data-profile] .course-component {
+    background: color-mix(in srgb, var(--profile-wash) 16%, var(--card))
+}
+
+:root[data-theme="dark"] body[data-profile] .course-component-status,
+:root[data-theme="dark"] body[data-profile] .course-component-date,
+:root[data-theme="dark"] body[data-profile] .course-component-grade {
+    border-color: var(--surface-line);
+    background: var(--surface-input)
+}
+
+:root[data-theme="dark"] body[data-profile] .announcement-audience,
+:root[data-theme="dark"] body[data-profile] .announcement-form input:not([type="radio"]):not([type="checkbox"]),
+:root[data-theme="dark"] body[data-profile] .announcement-form textarea {
+    border-color: var(--surface-line);
+    background: var(--surface-input)
+}
+
+:root[data-theme="dark"] body[data-profile] .notifications-close,
+:root[data-theme="dark"] body[data-profile] .announcement-actions button,
+:root[data-theme="dark"] body[data-profile] .notifications-read-all {
+    border-color: var(--surface-line);
+    background: var(--surface-raised)
+}
+
+:root[data-theme="dark"] body[data-profile] .announcement-card {
+    border-color: var(--surface-line);
+    background: var(--surface-base)
+}
+
+:root[data-theme="dark"] body[data-profile] .announcement-card.is-unread {
+    border-color: color-mix(in srgb, var(--profile-accent) 28%, var(--line));
+    background: color-mix(in srgb, var(--profile-wash) 24%, var(--card))
+}
+
+body[data-profile] .study-day.is-today {
+    background: color-mix(in srgb, var(--profile-wash) 28%, var(--card))
+}
+
+body[data-profile] .course-component {
+    background: color-mix(in srgb, var(--profile-wash) 12%, var(--card))
+}
+
+body[data-profile] .course-component-status,
+body[data-profile] .course-component-date,
+body[data-profile] .course-component-grade {
+    border-color: var(--surface-line);
+    background: var(--surface-input)
+}
+
+body[data-profile] .lesson-year-group,
+body[data-profile] .lesson-choice {
+    border-color: var(--surface-line);
+    background: var(--surface-base)
+}
+
+body[data-profile] .lesson-choice:has(input:checked) {
+    border-color: var(--profile-line);
+    background: color-mix(in srgb, var(--profile-wash) 36%, var(--card))
+}
+
+body[data-profile] .announcement-card {
+    border-color: var(--surface-line);
+    background: var(--surface-base)
+}
+
+body[data-profile] .announcement-card.is-unread {
+    border-color: color-mix(in srgb, var(--profile-accent) 25%, var(--line));
+    background: color-mix(in srgb, var(--profile-wash) 28%, var(--card))
+}
+
+body[data-profile] .notifications-close,
+body[data-profile] .announcement-actions button,
+body[data-profile] .notifications-read-all {
+    border-color: var(--surface-line);
+    background: var(--surface-raised)
+}
+
+body[data-profile] .announcement-audience {
+    border-color: var(--surface-line);
+    background: var(--surface-soft)
+}
+
+body[data-profile] .calendar-nav,
+body[data-profile] .today-button,
+body[data-profile] .study-week-nav button,
+body[data-profile] .study-session-actions button,
+body[data-profile] .study-suggestion,
+body[data-profile] .study-suggestion-item {
+    border-color: var(--surface-line);
+    background: var(--surface-base)
+}
+
+:root[data-theme="dark"] body[data-profile] .study-suggestion {
+    background: var(--surface-base)
+}
+
+:root[data-theme="dark"] body[data-profile] .study-suggestion-item {
+    background: var(--surface-raised)
+}
+
+body[data-profile] .study-suggestion-item:has(input:not(:checked)) {
+    opacity: .58
+}
+
+body[data-profile] .study-suggestion-item:hover {
+    border-color: color-mix(in srgb, var(--profile-accent) 28%, var(--surface-line));
+    background: var(--surface-raised)
+}
+
+:root[data-theme="dark"] body[data-profile] .study-suggestion-item:has(input:checked) {
+    border-color: color-mix(in srgb, var(--profile-accent) 22%, var(--surface-line))
+}
+
+:root[data-theme="dark"] body[data-profile] .notifications-panel,
+:root[data-theme="dark"] body[data-profile] .notifications-dialog {
+    background: color-mix(in srgb, var(--paper) 86%, var(--profile-wash))
+}
+
+:root[data-theme="dark"] body[data-profile] .notifications-panel input,
+:root[data-theme="dark"] body[data-profile] .notifications-panel textarea {
+    background: var(--surface-input)
+}
+
+/* Final palette pass: shared components use calm surfaces; profile color stays an accent. */
+body[data-profile] .elective-item,
+body[data-profile] .calendar-attendance,
+body[data-profile] .attendance-summary,
+body[data-profile] .calendar-card,
+body[data-profile] .day-card,
+body[data-profile] .agenda-card,
+body[data-profile] .agenda-date-group,
+body[data-profile] .past-agenda,
+body[data-profile] .course-section .course-card .course-note-panel,
+body[data-profile] .course-component:not([data-module-state]),
+body[data-profile] .useful-link-card {
+    border-color: var(--surface-line);
+    background: var(--surface-base)
+}
+
+body[data-profile] .attendance-summary-track {
+    background: var(--surface-line)
+}
+
+body[data-profile] .attendance-summary-track i {
+    background: var(--profile-accent)
+}
+
+body[data-profile] #electives-search,
+body[data-profile] .general-notes textarea,
+body[data-profile] .day-attendance-controls button,
+body[data-profile] .day-attendance-status {
+    border-color: var(--surface-line);
+    background: var(--surface-input)
+}
+
+body[data-profile] #electives-search:focus,
+body[data-profile] .general-notes textarea:focus,
+body[data-profile] .course-section .course-card .course-note-panel:focus-within {
+    border-color: var(--profile-accent);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--profile-accent) 14%, transparent)
+}
+
+body[data-profile] .elective-item:hover,
+body[data-profile] .agenda-date-group summary:hover,
+body[data-profile] .agenda-event:hover,
+body[data-profile] .past-agenda .past-heading:hover,
+body[data-profile] .past-heading:hover .group-chevron,
+body[data-profile] .useful-link-card:hover,
+body[data-profile] .calendar-nav:hover,
+body[data-profile] .today-button:hover,
+body[data-profile] button.calendar-cell:hover {
+    border-color: color-mix(in srgb, var(--profile-accent) 30%, var(--surface-line));
+    background: var(--surface-hover)
+}
+
+body[data-profile] .elective-item:has(input:checked) {
+    border-color: color-mix(in srgb, var(--profile-accent) 40%, var(--surface-line));
+    background: color-mix(in srgb, var(--profile-accent) 7%, var(--surface-base))
+}
+
+body[data-profile] .elective-item input {
+    accent-color: var(--profile-accent)
+}
+
+body[data-profile] .electives-counter {
+    border: 1px solid var(--surface-line);
+    background: var(--surface-soft);
+    color: color-mix(in srgb, var(--profile-accent) 72%, var(--ink))
+}
+
+body[data-profile] .electives-counter.full {
+    background: var(--surface-raised);
+    color: var(--muted)
+}
+
+body[data-profile] .electives-counter.limit {
+    border-color: color-mix(in srgb, #bf995c 24%, var(--line));
+    background: color-mix(in srgb, #bf995c 9%, var(--surface-base));
+    color: color-mix(in srgb, #8a6428 82%, var(--ink))
+}
+
+body[data-profile] .calendar-weekdays,
+body[data-profile] .calendar-day-names,
+body[data-profile] .event-day,
+body[data-profile] .elective-info em {
+    color: var(--muted)
+}
+
+body[data-profile] .calendar-cell {
+    border-color: transparent;
+    background: var(--surface-soft)
+}
+
+body[data-profile] .calendar-cell.blank {
+    background: transparent
+}
+
+body[data-profile] .calendar-cell.selected {
+    border-color: var(--profile-accent);
+    background: color-mix(in srgb, var(--profile-accent) 7%, var(--surface-base));
+    box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--profile-accent) 10%, transparent)
+}
+
+body[data-profile] button.calendar-cell.selected:hover {
+    background: color-mix(in srgb, var(--profile-accent) 11%, var(--surface-base))
+}    :root[data-theme="dark"] body[data-profile] button.calendar-cell.selected:hover {
+        background: color-mix(in srgb, var(--profile-accent) 18%, var(--surface-base))
+    }
+
+
+body[data-profile] .calendar-cell.today .calendar-number {
+    background: var(--green);
+    color: #fff
+}
+
+body[data-profile] .agenda-event:not(.event-planned),
+body[data-profile] .agenda-event.event-past,
+body[data-profile] .agenda-date-group summary,
+body[data-profile] .past-agenda .agenda-date-group summary {
+    border-color: var(--surface-line);
+    background: var(--surface-base)
+}
+
+body[data-profile] .agenda-event.event-past:hover {
+    opacity: 1
+}
+
+body[data-profile] .useful-link-card:hover {
+    box-shadow: 0 8px 20px color-mix(in srgb, var(--profile-accent) 9%, transparent)
+}
+
+body[data-profile] .course-section .course-card .course-note-panel label,
+body[data-profile] .course-section .course-card .course-note-panel textarea::placeholder,
+body[data-profile] .general-notes textarea::placeholder {
+    color: var(--muted)
+}
+
+:root[data-theme="dark"] body[data-profile] .elective-item,
+:root[data-theme="dark"] body[data-profile] .calendar-attendance,
+:root[data-theme="dark"] body[data-profile] .attendance-summary,
+:root[data-theme="dark"] body[data-profile] .calendar-card,
+:root[data-theme="dark"] body[data-profile] .day-card,
+:root[data-theme="dark"] body[data-profile] .agenda-card,
+:root[data-theme="dark"] body[data-profile] .agenda-date-group,
+:root[data-theme="dark"] body[data-profile] .past-agenda,
+:root[data-theme="dark"] body[data-profile] .course-section .course-card .course-note-panel,
+:root[data-theme="dark"] body[data-profile] .course-component:not([data-module-state]),
+:root[data-theme="dark"] body[data-profile] .useful-link-card {
+    border-color: var(--surface-line);
+    background: var(--surface-base)
+}
+
+:root[data-theme="dark"] body[data-profile] .attendance-summary-track {
+    background: var(--surface-line)
+}
+
+:root[data-theme="dark"] body[data-profile] #electives-search,
+:root[data-theme="dark"] body[data-profile] .general-notes textarea,
+:root[data-theme="dark"] body[data-profile] .day-attendance-controls button,
+:root[data-theme="dark"] body[data-profile] .day-attendance-status {
+    border-color: var(--surface-line);
+    background: var(--surface-input)
+}
+
+:root[data-theme="dark"] body[data-profile] .elective-item:hover,
+:root[data-theme="dark"] body[data-profile] .agenda-date-group summary:hover,
+:root[data-theme="dark"] body[data-profile] .agenda-event:hover,
+:root[data-theme="dark"] body[data-profile] .past-agenda .past-heading:hover,
+:root[data-theme="dark"] body[data-profile] .past-heading:hover .group-chevron,
+:root[data-theme="dark"] body[data-profile] .useful-link-card:hover,
+:root[data-theme="dark"] body[data-profile] .calendar-nav:hover,
+:root[data-theme="dark"] body[data-profile] .today-button:hover,
+:root[data-theme="dark"] body[data-profile] button.calendar-cell:hover {
+    border-color: color-mix(in srgb, var(--profile-accent) 36%, var(--surface-line));
+    background: var(--surface-hover)
+}
+
+:root[data-theme="dark"] body[data-profile] .elective-item:has(input:checked) {
+    border-color: color-mix(in srgb, var(--profile-accent) 45%, var(--surface-line));
+    background: color-mix(in srgb, var(--profile-accent) 12%, var(--surface-base))
+}
+
+:root[data-theme="dark"] body[data-profile] .elective-item input {
+    accent-color: var(--profile-accent)
+}
+
+:root[data-theme="dark"] body[data-profile] .electives-counter {
+    border-color: var(--surface-line);
+    background: var(--surface-soft);
+    color: var(--profile-accent)
+}
+
+:root[data-theme="dark"] body[data-profile] .electives-counter.full {
+    background: var(--surface-raised);
+    color: var(--muted)
+}
+
+:root[data-theme="dark"] body[data-profile] .calendar-cell {
+    border-color: transparent;
+    background: var(--surface-soft)
+}
+
+:root[data-theme="dark"] body[data-profile] .calendar-cell.blank {
+    background: transparent
+}
+
+:root[data-theme="dark"] body[data-profile] .calendar-cell.selected {
+    border-color: var(--profile-accent);
+    background: color-mix(in srgb, var(--profile-accent) 14%, var(--surface-base))
+}
+
+:root[data-theme="dark"] body[data-profile] .calendar-cell.today .calendar-number {
+    background: var(--green);
+    color: #fff
+}
+
+:root[data-theme="dark"] body[data-profile] .agenda-event:not(.event-planned),
+:root[data-theme="dark"] body[data-profile] .agenda-event.event-past,
+:root[data-theme="dark"] body[data-profile] .agenda-date-group summary,
+:root[data-theme="dark"] body[data-profile] .past-agenda .agenda-date-group summary {
+    border-color: var(--surface-line);
+    background: var(--surface-base)
+}
+
+:root[data-theme="dark"] body[data-profile] .agenda-event.event-past:hover {
+    opacity: 1
+}
+
+:root[data-theme="dark"] body[data-profile] .useful-link-card:hover {
+    box-shadow: 0 8px 22px rgba(0, 0, 0, .24)
+}
+
+:root[data-theme="dark"] body[data-profile] .day-attendance-controls button.is-present,
+:root[data-theme="dark"] body[data-profile] .day-attendance-status.is-present {
+    border-color: #3e6749;
+    background: #26392c;
+    color: #a8d2af
+}
+
+:root[data-theme="dark"] body[data-profile] .day-attendance-controls button.is-absent,
+:root[data-theme="dark"] body[data-profile] .day-attendance-status.is-absent {
+    border-color: #70453f;
+    background: #3a2927;
+    color: #e2a79e
+}
+
+:root[data-theme="dark"] body[data-profile] .day-attendance-controls button.is-present:hover,
+:root[data-theme="dark"] body[data-profile] .day-attendance-controls button.is-absent:hover {
+    filter: brightness(1.12)
+}
+
+body[data-profile] .day-attendance-controls button.is-present,
+body[data-profile] .day-attendance-status.is-present {
+    border-color: #c8e1ce;
+    background: #eaf5ec;
+    color: #286342
+}
+
+body[data-profile] .day-attendance-controls button.is-absent,
+body[data-profile] .day-attendance-status.is-absent {
+    border-color: #efd8d3;
+    background: #fbefed;
+    color: #9b5148
+}
+
+/* A compact segmented switch makes the main views feel like one deliberate control. */
+body[data-profile] .view-tabs {
+    position: relative;
+    display: flex;
+    width: fit-content;
+    max-width: 100%;
+    align-items: center;
+    gap: 3px;
+    margin: 0 0 25px;
+    padding: 4px;
+    border: 1px solid var(--surface-line);
+    border-radius: 15px;
+    background: var(--surface-soft);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .48);
+    backdrop-filter: none
+}
+
+body[data-profile] .view-tab {
+    position: relative;
+    display: inline-flex;
+    min-height: 37px;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    padding: 0 14px;
+    border: 0;
+    border-radius: 11px;
+    background: transparent;
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 550;
+    line-height: 1.2;
+    white-space: nowrap;
+    transition: background .16s ease, color .16s ease, box-shadow .16s ease
+}
+
+body[data-profile] .view-tab:hover:not(.active) {
+    background: color-mix(in srgb, var(--profile-accent) 5%, var(--surface-base));
+    color: var(--ink)
+}
+
+body[data-profile] .view-tab.active {
+    background: color-mix(in srgb, var(--profile-accent) 9%, var(--surface-base));
+    box-shadow: 0 1px 3px rgba(28, 24, 35, .08), inset 0 0 0 1px color-mix(in srgb, var(--profile-accent) 14%, transparent);
+    color: color-mix(in srgb, var(--profile-accent) 76%, var(--ink));
+    font-weight: 650
+}
+
+body[data-profile] .view-tab.active:after {
+    display: none;
+    content: none
+}
+
+body[data-profile] .view-tab:focus-visible {
+    z-index: 1;
+    outline: 2px solid var(--profile-accent);
+    outline-offset: 2px
+}
+
+body[data-profile] .view-tab .tab-count {
+    display: inline-flex;
+    min-width: 18px;
+    height: 18px;
+    align-items: center;
+    justify-content: center;
+    padding: 0 5px;
+    border-radius: 99px;
+    background: var(--surface-raised);
+    color: var(--muted);
+    font-size: 9px;
+    font-variant-numeric: tabular-nums;
+    font-weight: 600
+}
+
+body[data-profile] .view-tab.active .tab-count {
+    background: color-mix(in srgb, var(--profile-accent) 13%, var(--surface-base));
+    color: var(--profile-accent)
+}
+
+:root[data-theme="dark"] body[data-profile] .view-tabs {
+    background: var(--surface-soft);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .035)
+}
+
+:root[data-theme="dark"] body[data-profile] .view-tab.active {
+    background: color-mix(in srgb, var(--profile-accent) 15%, var(--surface-raised));
+    box-shadow: 0 1px 4px rgba(0, 0, 0, .18), inset 0 0 0 1px color-mix(in srgb, var(--profile-accent) 21%, transparent);
+    color: var(--profile-accent)
+}
+
+:root[data-theme="dark"] body[data-profile] .view-tab.active .tab-count {
+    background: color-mix(in srgb, var(--profile-accent) 20%, var(--surface-base));
+    color: var(--profile-accent)
+}
+
+/* Light mode uses restrained semantic washes to distinguish course sections. */
+:root:not([data-theme="dark"]) body[data-profile] .course-section .course-card.status-passed,
+:root:not([data-theme="dark"]) body[data-profile] .course-section .course-card.passed {
+    border-color: color-mix(in srgb, #55936b 18%, var(--line));
+    background: color-mix(in srgb, #55936b 5%, var(--card))
+}
+
+:root:not([data-theme="dark"]) body[data-profile] .course-section .course-card.status-partial {
+    border-color: color-mix(in srgb, #55936b 21%, var(--line));
+    background: color-mix(in srgb, #55936b 7%, var(--card))
+}
+
+:root:not([data-theme="dark"]) body[data-profile] .course-section .course-card.status-scheduled {
+    border-color: color-mix(in srgb, #7892b2 19%, var(--line));
+    background: color-mix(in srgb, #7892b2 6%, var(--card))
+}
+
+:root:not([data-theme="dark"]) body[data-profile] .course-section .course-card.status-studying {
+    border-color: color-mix(in srgb, #bf995c 20%, var(--line));
+    background: color-mix(in srgb, #bf995c 7%, var(--card))
+}
+
+:root:not([data-theme="dark"]) body[data-profile] .course-section .course-card.status-try {
+    border-color: color-mix(in srgb, #c27969 18%, var(--line));
+    background: color-mix(in srgb, #c27969 6%, var(--card))
+}
+
+:root:not([data-theme="dark"]) body[data-profile] .course-section .course-card.status-later {
+    border-color: color-mix(in srgb, var(--muted) 16%, var(--line));
+    background: color-mix(in srgb, var(--muted) 5%, var(--card))
+}
+
+/* Notes share their panel surface; a separately tinted textarea caused a dark inset block. */
+body[data-profile] .course-section .course-card .course-note-panel textarea,
+:root[data-theme="dark"] body[data-profile] .course-section .course-card .course-note-panel textarea {
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+    -webkit-appearance: none;
+    appearance: none
+}
+
+@media(max-width:520px) {
+    body[data-profile] .view-tabs {
+        display: grid;
+        width: 100%;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 2px;
+        overflow-x: visible;
+        padding: 3px;
+        margin-bottom: 21px
+    }
+
+    body[data-profile] .view-tab {
+        min-width: 0;
+        min-height: 36px;
+        gap: 4px;
+        padding: 0 5px;
+        font-size: 11px
+    }
+
+    body[data-profile] .view-tab .tab-count {
+        min-width: 16px;
+        height: 16px;
+        padding: 0 4px;
+        font-size: 8px
+    }
+}
+
+/* Keep the subjects toolbar on the same calm surface as the page in both themes. */
+body[data-profile] #subjects-view .toolbar {
+    gap: 8px;
+    padding: 8px;
+    border: 1px solid var(--surface-line);
+    border-radius: 16px;
+    background: var(--card)
+}
+
+body[data-profile] #subjects-view .search-wrap {
+    border-radius: 12px;
+    background: var(--card)
+}
+
+body[data-profile] #subjects-view .search-wrap:focus-within {
+    background: var(--card)
+}
+
+body[data-profile] #subjects-view .filter-toggle,
+body[data-profile] #subjects-view .course-tools summary {
+    border-color: var(--surface-line);
+    background: var(--card)
+}
+
+body[data-profile] #subjects-view .filter-toggle:hover,
+body[data-profile] #subjects-view .course-tools summary:hover {
+    background: var(--surface-hover)
+}
+
+/* Give the attendance summary a clear, comfortable pause after the calendar cards. */
+body[data-profile] #calendar-attendance {
+    margin-top: 20px
+}
+
+.exam-reminders {
+    display: grid;
+    gap: 10px;
+    margin: 12px 0 20px;
+    padding: 15px;
+    border: 1px solid var(--surface-line);
+    border-radius: 16px;
+    background: var(--card)
+}
+
+.exam-reminders-heading,
+.exam-reminder {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px
+}
+
+.exam-reminders-heading h2 { margin: 3px 0 0; font-size: 14px; font-weight: 650 }
+.exam-reminder-setting { color: var(--muted); font-size: 10px }
+.exam-reminders-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); gap: 8px }
+.exam-reminder { min-width: 0; justify-content: flex-start; padding: 10px 12px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface-hover) }
+.exam-reminder-count { flex: none; min-width: 74px; color: var(--profile-accent, #68836e); font-size: 12px; font-weight: 720 }
+.exam-reminder>div { display: grid; min-width: 0; gap: 3px }
+.exam-reminder strong,.exam-reminder>div>span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap }
+.exam-reminder strong { font-size: 11px }
+.exam-reminder>div>span { color: var(--muted); font-size: 10px }
+.exam-reminder.is-soon { border-color: color-mix(in srgb, #bf995c 36%, var(--line)) }
+.exam-reminder.is-soon .exam-reminder-count { color: #99702f }
+.exam-reminder.is-urgent { border-color: color-mix(in srgb, #bd7464 38%, var(--line)); background: color-mix(in srgb, #bd7464 9%, var(--card)) }
+.exam-reminder.is-urgent .exam-reminder-count { color: #a15344 }
+
+.study-settings-dialog { width: min(680px, calc(100vw - 28px)); max-height: min(88vh, 850px); overflow-y: auto }
+.study-settings-dialog .edit-form { gap: 14px }
+.planner-days,.planner-priorities,.planner-reminders { min-width: 0; margin: 0; padding: 12px; border: 1px solid var(--line); border-radius: 12px }
+.planner-days legend,.planner-priorities legend,.planner-reminders legend { padding: 0 5px; font-size: 11px; font-weight: 650 }
+.planner-priorities legend span { color: var(--muted); font-weight: 400 }
+.planner-priority-help { margin: 0 0 7px; color: var(--muted); font-size: 10px }
+.planner-day-options,.planner-time-range,.planner-reminder-days { display: flex; flex-wrap: wrap; align-items: end; gap: 10px }
+.planner-day-options label,.planner-reminder-days label,.planner-reminder-toggle { display: inline-flex; align-items: center; gap: 5px; min-height: 34px; color: var(--ink); font-size: 11px }
+.planner-day-options input,.planner-reminder-days input,.planner-reminder-toggle input,.planner-priority-options input { accent-color: var(--profile-accent, #718d73) }
+.planner-time-range>label { display: grid; flex: 1; min-width: 120px; gap: 5px; color: var(--muted); font-size: 10px }
+.planner-time-range input,.planner-time-range select { min-width: 0; min-height: 36px; padding: 6px 8px; border: 1px solid var(--line); border-radius: 9px; background: var(--card); color: var(--ink); font: inherit }
+.planner-priority-options { display: grid; max-height: 210px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 215px), 1fr)); gap: 5px; overflow-y: auto }
+.planner-priority-options label { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: 3px 7px; padding: 7px; border-radius: 8px; font-size: 10px }
+.planner-priority-options label:hover { background: var(--surface-hover) }
+.planner-priority-options input { grid-row: span 2 }
+.planner-priority-options span { overflow: hidden; text-overflow: ellipsis }
+.planner-priority-options small { color: var(--muted); font-size: 9px }
+.planner-reminders { display: grid; gap: 9px }
+.planner-reminder-days>span { margin-right: 5px; color: var(--muted); font-size: 10px }
+.planner-reminder-note { margin: 0; color: var(--muted); font-size: 10px; line-height: 1.5 }
+
+.course-goals { display: grid; gap: 8px; margin-top: 12px; padding-top: 9px; border-top: 1px solid var(--line) }
+.course-goals>summary { display: flex; width: fit-content; align-items: center; gap: 7px; cursor: pointer; color: var(--muted); font-size: 10px; font-weight: 600; list-style: none }
+.course-goals>summary::-webkit-details-marker { display: none }
+.course-goals>summary:before { content: '＋'; color: var(--profile-accent, #718d73); font-size: 12px }
+.course-goals[open]>summary:before { content: '−' }
+.course-goals>summary span { color: var(--profile-accent, #718d73) }
+.course-goal-empty { margin: 0; color: var(--muted); font-size: 10px }
+.course-goal-list { display: grid; gap: 5px; margin: 0; padding: 0; list-style: none }
+.course-goal { display: flex; min-width: 0; align-items: center; gap: 6px; font-size: 10px }
+.course-goal>label { display: flex; min-width: 0; flex: 1; align-items: center; gap: 7px }
+.course-goal>label input { flex: none; accent-color: var(--profile-accent, #718d73) }
+.course-goal>label span,.course-goal>span { overflow-wrap: anywhere }
+.course-goal.is-done>label span { color: var(--muted); text-decoration: line-through }
+.course-goal.needs-review>label span { color: #9a7136 }
+.course-goal button { flex: none; padding: 4px 7px; border: 1px solid var(--line); border-radius: 7px; background: var(--card); color: var(--muted); font: inherit; font-size: 9px; cursor: pointer }
+.course-goal button[aria-pressed="true"],.goal-review-label { color: #9a7136 }
+.course-goal .goal-delete { min-width: 25px; padding: 2px; font-size: 13px }
+.course-goal-form { display: flex; gap: 6px }
+.course-goal-form input { min-width: 0; flex: 1; padding: 7px 9px; border: 1px solid var(--line); border-radius: 8px; background: var(--card); color: var(--ink); font: inherit; font-size: 10px }
+.course-goal-form button { flex: none; padding: 6px 9px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface-hover); color: var(--ink); font: inherit; font-size: 10px; cursor: pointer }
+.goal-review-label { font-size: 9px }
+
+:root[data-theme="dark"] .exam-reminder.is-urgent { background: color-mix(in srgb, #bd7464 12%, var(--card)) }
+:root[data-theme="dark"] .exam-reminder.is-urgent .exam-reminder-count { color: #e29a8a }
+:root[data-theme="dark"] .exam-reminder.is-soon .exam-reminder-count,:root[data-theme="dark"] .course-goal.needs-review>label span,:root[data-theme="dark"] .course-goal button[aria-pressed="true"],:root[data-theme="dark"] .goal-review-label { color: #e2bc79 }
+
+@media(max-width:560px) {
+    .exam-reminders { padding: 12px }
+    .exam-reminder { align-items: flex-start; flex-direction: column; gap: 4px }
+    .exam-reminder-count { min-width: 0 }
+    .planner-day-options { justify-content: space-between; gap: 5px }
+    .planner-day-options label { font-size: 10px }
+    .planner-reminder-days { align-items: flex-start; gap: 4px 8px }
+    .planner-reminder-days>span { width: 100% }
+}
+
+@media(max-width:430px) {
+    .course-goal-form button { padding-inline: 7px }
+    .planner-time-range>label { min-width: calc(50% - 8px) }
+}
+
+.study-settings-dialog {
+    width: min(620px, calc(100vw - 24px));
+    max-height: min(90dvh, 820px);
+    border-radius: 22px;
+    scrollbar-width: thin
+}
+
+.study-settings-dialog[open] { display: block }
+.study-settings-dialog .planner-form { gap: 12px; padding: 22px }
+.planner-dialog-header { display: grid; gap: 5px; padding: 0 0 2px }
+.planner-dialog-header .section-kicker { margin: 0; color: var(--profile-accent, #718d73); font-weight: 700 }
+.planner-dialog-header h2 { font-size: clamp(21px, 4vw, 25px); letter-spacing: -.045em; text-transform: none }
+.planner-dialog-header .lesson-settings-intro { max-width: 52ch; font-size: 11px; line-height: 1.45 }
+.planner-days,.planner-priorities,.planner-reminders,.planner-time-section {
+    min-width: 0; margin: 0; padding: 13px; border: 1px solid var(--line); border-radius: 13px; background: var(--card)
+}
+.planner-days legend,.planner-priorities legend,.planner-reminders legend { padding: 0 6px; color: var(--ink); font-size: 12px; font-weight: 680 }
+.planner-priorities legend span { margin-left: 5px; color: var(--muted); font-size: 10px; font-weight: 500 }
+.planner-section-help { margin: 0 0 8px; color: var(--muted); font-size: 10px; line-height: 1.4 }
+.planner-day-options { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 5px }
+.planner-day-options label {
+    display: flex; min-height: 40px; align-items: center; justify-content: center; gap: 0; padding: 5px 2px;
+    border: 1px solid var(--line); border-radius: 10px; background: var(--paper); color: var(--ink);
+    font-size: 11px; font-weight: 650; cursor: pointer; transition: border-color .15s, background .15s, color .15s
+}
+.planner-day-options label:has(input:checked) { border-color: color-mix(in srgb, var(--profile-accent, #718d73) 52%, var(--line)); background: color-mix(in srgb, var(--profile-accent, #718d73) 12%, var(--card)); color: var(--profile-accent, #526d58) }
+.planner-day-options label:focus-within { outline: 2px solid var(--profile-accent, #718d73); outline-offset: 2px }
+.planner-day-options input,.planner-reminder-days input,.planner-reminder-toggle input,.planner-priority-options input {
+    width: auto; flex: none; margin: 0; padding: 0; border: 0; background: transparent; accent-color: var(--profile-accent, #718d73)
+}
+.planner-day-options input { position: absolute; width: 1px; height: 1px; opacity: 0 }
+.planner-time-section { display: grid; gap: 9px }
+.planner-section-title { display: grid; gap: 3px }
+.planner-section-title strong { font-size: 12px }
+.planner-section-title span { color: var(--muted); font-size: 10px; line-height: 1.4 }
+.planner-time-range { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: end; gap: 7px }
+.planner-time-range>label { display: grid; min-width: 0; gap: 6px; color: var(--muted); font-size: 10px; font-weight: 600 }
+.planner-time-range input,.planner-time-range select {
+    width: 100%; min-width: 0; min-height: 40px; padding: 7px 8px; border: 1px solid var(--line); border-radius: 9px;
+    background: var(--paper); color: var(--ink); font: inherit; font-size: 13px
+}
+.planner-time-range input:focus-visible,.planner-time-range select:focus-visible { outline-color: var(--profile-accent, #718d73); border-color: var(--profile-accent, #718d73) }
+.planner-priority-help { margin: 0 0 8px; color: var(--muted); font-size: 10px; line-height: 1.4 }
+.planner-priority-options { display: grid; max-height: 160px; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 5px; overflow-y: auto; padding: 2px; scrollbar-width: thin }
+.planner-priority-options label {
+    display: grid; min-width: 0; grid-template-columns: 18px minmax(0, 1fr); align-items: center; gap: 3px 8px;
+    padding: 7px 8px; border: 1px solid var(--line); border-radius: 10px; background: var(--paper); color: var(--ink);
+    font-size: 11px; cursor: pointer; transition: border-color .15s, background .15s
+}
+.planner-priority-options label:has(input:checked) { border-color: color-mix(in srgb, var(--profile-accent, #718d73) 48%, var(--line)); background: color-mix(in srgb, var(--profile-accent, #718d73) 8%, var(--card)) }
+.planner-priority-options label:focus-within { outline: 2px solid var(--profile-accent, #718d73); outline-offset: 1px }
+.planner-priority-options input { grid-row: span 2; width: 16px; height: 16px }
+.planner-priority-options span { overflow: hidden; font-size: 10px; font-weight: 600; text-overflow: ellipsis; white-space: nowrap }
+.planner-priority-options small { overflow: hidden; color: var(--muted); font-size: 9px; text-overflow: ellipsis; white-space: nowrap }
+.planner-reminders { display: grid; gap: 9px }
+.study-settings-dialog .planner-reminder-toggle {
+    display: flex; align-items: flex-start; gap: 9px; min-width: 0; min-height: 0; padding: 9px 10px; border: 1px solid var(--line);
+    border-radius: 11px; background: var(--paper); color: var(--ink); cursor: pointer
+}
+.study-settings-dialog .planner-reminder-toggle input { width: 17px; height: 17px; margin-top: 1px }
+.study-settings-dialog .planner-reminder-toggle>span { display: grid; min-width: 0; gap: 3px }
+.study-settings-dialog .planner-reminder-toggle strong { font-size: 11px }
+.study-settings-dialog .planner-reminder-toggle small { color: var(--muted); font-size: 10px; line-height: 1.4 }
+.planner-reminder-days { display: flex; flex-wrap: wrap; align-items: center; gap: 6px }
+.planner-reminder-days>span { width: 100%; color: var(--muted); font-size: 10px; font-weight: 600 }
+.planner-reminder-days label {
+    display: inline-flex; min-height: 34px; align-items: center; gap: 6px; padding: 5px 8px; border: 1px solid var(--line);
+    border-radius: 9px; background: var(--paper); color: var(--ink); font-size: 10px; cursor: pointer
+}
+.planner-reminder-days label:has(input:checked) { border-color: color-mix(in srgb, var(--profile-accent, #718d73) 48%, var(--line)); background: color-mix(in srgb, var(--profile-accent, #718d73) 9%, var(--card)) }
+.planner-notification-permission { display: grid; gap: 6px; padding-top: 9px; border-top: 1px solid var(--line) }
+.planner-notification-permission .filter-toggle { justify-self: start; min-height: 38px; padding: 8px 11px; font-size: 10px }
+.planner-reminder-note { max-width: 58ch; margin: 0; color: var(--muted); font-size: 10px; line-height: 1.5 }
+.planner-form-actions {
+    position: sticky; bottom: -22px; z-index: 1; justify-content: space-between; margin: 0 -22px -22px; padding: 10px 22px;
+    border-top: 1px solid var(--line); background: color-mix(in srgb, var(--paper) 94%, transparent); backdrop-filter: blur(12px)
+}
+.planner-form-actions button { min-height: 42px; padding-inline: 16px; cursor: pointer }
+.planner-form-actions button[type=submit] { min-width: 180px; border: 0; border-radius: 10px; font-weight: 650 }
+.planner-form-actions button:disabled { cursor: wait; opacity: .65 }
+#study-settings-message:empty { display: none }
+#study-settings-message { margin: 0; font-size: 11px }
+
+:root[data-theme="dark"] .planner-days,
+:root[data-theme="dark"] .planner-priorities,
+:root[data-theme="dark"] .planner-reminders,
+:root[data-theme="dark"] .planner-time-section { border-color: var(--line); background: color-mix(in srgb, var(--paper) 45%, var(--card)) }
+:root[data-theme="dark"] .planner-day-options label,
+:root[data-theme="dark"] .planner-priority-options label,
+:root[data-theme="dark"] .planner-reminder-toggle,
+:root[data-theme="dark"] .planner-reminder-days label,
+:root[data-theme="dark"] .planner-time-range input,
+:root[data-theme="dark"] .planner-time-range select { border-color: var(--line); background: color-mix(in srgb, var(--paper) 28%, var(--card)); color: var(--ink) }
+:root[data-theme="dark"] .planner-day-options label:has(input:checked),
+:root[data-theme="dark"] .planner-priority-options label:has(input:checked),
+:root[data-theme="dark"] .planner-reminder-days label:has(input:checked) { border-color: color-mix(in srgb, var(--profile-accent, #9bc6a4) 55%, var(--line)); background: color-mix(in srgb, var(--profile-accent, #9bc6a4) 18%, var(--card)) }
+:root[data-theme="dark"] .planner-form-actions { border-color: var(--line); background: color-mix(in srgb, var(--paper) 90%, transparent) }
+:root[data-theme="dark"] body[data-profile] .study-toolbar { border-color: var(--surface-line); background: var(--surface-base) }
+:root[data-theme="dark"] body[data-profile] .study-week-nav { border-color: var(--surface-line); background: var(--surface-raised) }
+:root[data-theme="dark"] body[data-profile] .study-toolbar-actions .study-suggest-button,
+:root[data-theme="dark"] body[data-profile] .study-toolbar-actions .study-settings-button { border-color: var(--surface-line); background: var(--surface-raised); color: var(--ink) }
+
+@media(max-width:560px) {
+    .study-settings-dialog { width: calc(100vw - 16px); max-height: min(76dvh, 660px); border-radius: 18px; overscroll-behavior: contain }
+    .study-settings-dialog .planner-form { gap: 8px; padding: 12px 14px calc(12px + env(safe-area-inset-bottom)) }
+    .planner-dialog-header { gap: 3px }
+    .planner-dialog-header .section-kicker { font-size: 8px }
+    .planner-dialog-header h2 { font-size: 20px }
+    .planner-dialog-header .lesson-settings-intro { font-size: 10px; line-height: 1.35 }
+    .planner-days,.planner-priorities,.planner-reminders,.planner-time-section { padding: 9px; border-radius: 11px }
+    .planner-days legend,.planner-priorities legend,.planner-reminders legend { font-size: 11px }
+    .planner-section-help { margin-bottom: 6px; font-size: 9px }
+    .planner-day-options { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 5px }
+    .planner-day-options label { min-height: 40px; font-size: 9px }
+    .planner-time-range { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 7px }
+    .planner-time-range>label { font-size: 9px }
+    .planner-time-range>label:last-child { grid-column: auto }
+    .planner-time-range input,.planner-time-range select { min-height: 38px; font-size: 12px }
+    .planner-priority-help { margin-bottom: 6px; font-size: 9px }
+    .planner-priority-options { grid-template-columns: 1fr; max-height: 112px; gap: 4px }
+    .planner-priority-options label { padding: 6px 7px }
+    .planner-reminders { gap: 7px }
+    .study-settings-dialog .planner-reminder-toggle { gap: 8px; padding: 8px }
+    .study-settings-dialog .planner-reminder-toggle strong { font-size: 10px }
+    .study-settings-dialog .planner-reminder-toggle small { font-size: 9px; line-height: 1.3 }
+    .planner-reminder-days { gap: 5px }
+    .planner-reminder-days label { min-height: 40px; padding: 5px 7px; font-size: 9px }
+    .planner-notification-permission { gap: 5px; padding-top: 7px }
+    .planner-notification-permission .filter-toggle { min-height: 40px; padding: 7px 9px; font-size: 9px }
+    .planner-reminder-note { font-size: 9px; line-height: 1.35 }
+    .planner-form-actions { bottom: 0; margin: 0 -14px calc(-12px - env(safe-area-inset-bottom)); padding: 8px 14px calc(8px + env(safe-area-inset-bottom)) }
+    .planner-form-actions button { min-height: 44px }
+    .planner-form-actions button[type=submit] { min-width: 0; flex: 1 }
+}
+
+@media(max-width:360px) {
+    .study-settings-dialog .planner-form { padding-inline: 11px }
+    .planner-days,.planner-priorities,.planner-reminders,.planner-time-section { padding: 8px }
+    .planner-day-options { gap: 4px }
+    .planner-day-options label { min-height: 40px; font-size: 8px }
+    .planner-form-actions { margin-inline: -11px; padding-inline: 11px }
+}
+
+
