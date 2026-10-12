@@ -1,0 +1,92 @@
+window.TAVOLO_PRACTICE_LABS = [
+  {
+    id: 'visual-list-ordered', topic: 'lists', kind: 'walkthrough', level: 'medio',
+    title: 'Consegne: inserimento ordinato e cancellazione', source: 'Appello 19/06/2024 · gestione consegne',
+    description: 'Inserisci una consegna in ordine crescente di chilometri residui, poi segui la rimozione di un nodo senza perdere il resto della lista.',
+    code: ['while (*link && (*link)->km < nuovo->km) link = &(*link)->next;', 'nuovo->next = *link;', '*link = nuovo;', 'corrente = *link;', '*link = corrente->next;', 'free(corrente);'],
+    steps: [
+      { heading: 'La lista di partenza', explanation: 'link è un puntatore al puntatore che dovrà essere aggiornato: ora indica la testa; durante la scansione può avanzare all’indirizzo del campo next.', nodes: ['12 · Catania', '35 · Siracusa', '51 · Palermo'], list: [{ value: '12 km', detail: 'Catania' }, { value: '35 km', detail: 'Siracusa' }, { value: '51 km', detail: 'Palermo' }], focus: 0, line: 1, vars: ['nuovo.km = 27', '*link è la testa della lista'] },
+      { heading: 'Trova il punto d’inserimento', explanation: '12 < 27: avanza link all’indirizzo del successivo. 35 < 27 è falso: fermati. Il nuovo nodo non è ancora collegato e la lista non è cambiata.', nodes: ['lista originale: 12 → 35 → 51', 'candidato: 27 · Messina (separato)'], list: [{ value: '12 km', detail: 'Catania' }, { value: '35 km', detail: 'Siracusa' }, { value: '51 km', detail: 'Palermo' }], detached: [{ value: '27 km', detail: 'Messina · nuovo, ancora scollegato' }], focus: 1, line: 1, vars: ['12 < 27 → link = &12->next', '35 < 27 → falso, stop', 'il puntatore della lista è ancora invariato'] },
+      { heading: 'Collega il nuovo nodo al successivo', explanation: 'Scrivi 35 in nuovo->next. Il nuovo nodo punta al suffisso corretto, ma il predecessore 12 non punta ancora a 27: la lista principale è ancora invariata.', nodes: ['lista originale: 12 → 35 → 51', 'nuovo: 27 → 35 (collegamento in preparazione)'], list: [{ value: '12 km', detail: 'Catania' }, { value: '35 km', detail: 'Siracusa' }, { value: '51 km', detail: 'Palermo' }], detached: [{ value: '27 km', detail: 'Messina · next → 35 km' }], focus: 1, line: 2, vars: ['nuovo->next = *link', '*link è ancora l’indirizzo che contiene 35', 'nessun nodo è perso'] },
+      { heading: 'Aggiorna il collegamento precedente', explanation: 'Ora *link può puntare a nuovo: la catena completa è 12 → 27 → 35 → 51 ed è ancora ordinata.', nodes: ['12 · Catania', '27 · Messina ✦', '35 · Siracusa', '51 · Palermo'], list: [{ value: '12 km', detail: 'Catania' }, { value: '27 km ✦', detail: 'Messina · nuovo' }, { value: '35 km', detail: 'Siracusa' }, { value: '51 km', detail: 'Palermo' }], focus: 1, line: 3, vars: ['*link = nuovo', 'dimensione: 3 → 4', 'lista finale: 12 → 27 → 35 → 51'] },
+      { heading: 'Rimuovi una città senza perdere il successivo', explanation: 'Quando trovi Siracusa, corrente salva 35; poi *link prende corrente->next (51). Solo dopo aver scollegato 35 lo liberi. La lista resta 12 → 27 → 51.', nodes: ['12 · Catania', '27 · Messina', '51 · Palermo'], list: [{ value: '12 km', detail: 'Catania' }, { value: '27 km', detail: 'Messina' }, { value: '51 km', detail: 'Palermo' }], focus: 1, line: 6, vars: ['corrente = nodo Siracusa (35)', '*link = corrente->next (51)', 'free(corrente) dopo lo scollegamento'] }
+    ]
+  },
+  {
+    id: 'visual-queue-priority', topic: 'queue', kind: 'walkthrough', level: 'avanzato',
+    title: 'Pronto soccorso: code FIFO ordinate per priorità', source: 'Appello 24/01/2025 · pronto soccorso',
+    description: 'La lista esterna ordina le priorità; ogni priorità contiene una coda FIFO. Inserisci un paziente giallo e servi il primo paziente della priorità più alta.',
+    code: ['inserisci la coda gialla in ordine;', 'coda->tail->next = nuovo;', 'coda->tail = nuovo;', 'paziente = rosso->head;', 'rosso->head = paziente->next;'],
+    steps: [
+      { heading: 'Lista di code annidate', explanation: 'La priorità decide quale coda si serve; dentro una coda, chi è arrivato per primo esce per primo.', nodes: ['ROSSO: Ada → Bruno', 'VERDE: Ciro', 'BIANCO: vuota'], queues: [{ label: 'ROSSO', nodes: ['Ada', 'Bruno'] }, { label: 'VERDE', nodes: ['Ciro'] }, { label: 'BIANCO', nodes: [] }], focus: 0, line: 1, vars: ['head ROSSO = Ada', 'tail ROSSO = Bruno', 'Bruno->next = NULL'] },
+      { heading: 'Crea la priorità gialla', explanation: 'GIALLO non c’è ancora: inserisci il suo nodo tra ROSSO e VERDE. Il paziente non va inserito nella lista esterna.', nodes: ['ROSSO: Ada → Bruno', 'GIALLO: vuota ✦', 'VERDE: Ciro', 'BIANCO: vuota'], queues: [{ label: 'ROSSO', nodes: ['Ada', 'Bruno'] }, { label: 'GIALLO ✦', nodes: [] }, { label: 'VERDE', nodes: ['Ciro'] }, { label: 'BIANCO', nodes: [] }], focus: 1, line: 1, vars: ['precedente = ROSSO', 'successivo = VERDE'] },
+      { heading: 'Enqueue in fondo alla coda', explanation: 'Daria entra nella coda gialla. Si collega tail->next e poi si aggiorna tail; con una coda vuota head e tail diventano entrambi Daria.', nodes: ['ROSSO: Ada → Bruno', 'GIALLO: Daria ✦', 'VERDE: Ciro', 'BIANCO: vuota'], queues: [{ label: 'ROSSO', nodes: ['Ada', 'Bruno'] }, { label: 'GIALLO', nodes: ['Daria'] }, { label: 'VERDE', nodes: ['Ciro'] }, { label: 'BIANCO', nodes: [] }], focus: 1, line: 2, vars: ['head = Daria', 'tail = Daria', 'Daria->next = NULL'] },
+      { heading: 'Servi la priorità più alta', explanation: 'ROSSO è la prima coda non vuota. Esce Ada; Bruno resta in testa e precede i pazienti delle altre priorità.', nodes: ['ROSSO: Bruno', 'GIALLO: Daria', 'VERDE: Ciro', 'BIANCO: vuota'], queues: [{ label: 'ROSSO', nodes: ['Bruno'] }, { label: 'GIALLO', nodes: ['Daria'] }, { label: 'VERDE', nodes: ['Ciro'] }, { label: 'BIANCO', nodes: [] }], focus: 0, line: 4, vars: ['paziente = Ada', 'rosso->head = Ada->next = Bruno'] },
+      { heading: 'Preserva l’invariante della coda', explanation: 'Se si rimuove l’ultimo elemento, la coda è vuota: sia head sia tail devono diventare NULL prima del prossimo enqueue. Qui ne resta uno, quindi entrambi puntano a Bruno.', nodes: ['ROSSO: Bruno', 'GIALLO: Daria', 'VERDE: Ciro', 'BIANCO: vuota'], focus: 0, line: 5, vars: ['head ROSSO = Bruno', 'tail ROSSO = Bruno', 'Ada è stata servita'] }
+    ]
+  },
+  {
+    id: 'visual-stack-word-tree', topic: 'trees', kind: 'walkthrough', level: 'avanzato',
+    title: 'Parole: lista per lunghezza e albero alfabetico', source: 'Appello 20/09/2024 · elaborazione parole',
+    description: 'Confronta l’ordinamento della lista per lunghezza con quello del BST alfabetico; poi segui il conteggio delle lunghezze e la visita inorder.',
+    code: ['inserisci_ordinata_per_lunghezza(lista, parola);', 'indice = lunghezza(parola) - 4;', 'if (strcmp(parola, nodo->parola) < 0) vai_a_sinistra();', 'else vai_a_destra();', 'inorder(sinistra); visita(nodo); inorder(destra);'],
+    steps: [
+      { heading: 'Lista ordinata per lunghezza', explanation: 'Inserendo mare (4) dopo casa (4), la lista resta ordinata per lunghezza; albero (6) e telefono (8) vengono dopo.', nodes: ['casa · 4 lettere', 'mare · 4 lettere', 'albero · 6 lettere', 'telefono · 8 lettere'], focus: 1, line: 1, vars: ['chiave della lista = lunghezza', 'a pari lunghezza manteniamo l’ordine d’arrivo'] },
+      { heading: 'Aggiorna il conteggio', explanation: 'La categoria delle parole di quattro lettere usa indice zero. La categoria delle parole di sei lettere usa indice due.', nodes: ['4 lettere → conteggio[0] = 2', '6 lettere → conteggio[2] = 1', '8 o più → conteggio[4]'], focus: 0, line: 2, vars: ['indice = lunghezza - 4', 'prima di indicizzare, controlla il limite'] },
+      { heading: 'Costruisci il BST confrontando le parole', explanation: 'Inserimento nell’ordine mare, casa, albero, telefono: casa < mare, albero < casa, telefono > mare. L’albero riflette l’ordine alfabetico, non quello delle lunghezze.', nodes: ['mare è radice; casa è a sinistra; albero è a sinistra di casa; telefono è a destra di mare.'], tree: { id: 'mare', label: 'mare', left: { id: 'casa', label: 'casa', left: { id: 'albero', label: 'albero', state: 'focus' } }, right: { id: 'telefono', label: 'telefono' } }, focus: 2, line: 3, vars: ['albero < casa < mare < telefono', 'confronto: strcmp(parola, nodo->parola)', 'nodo nuovo: figlio sinistro di casa'] },
+      { heading: 'Visita inorder', explanation: 'In un BST valido, sinistra → nodo → destra restituisce casa, albero, mare, telefono in ordine alfabetico.', nodes: ['inorder: albero, casa, mare, telefono'], tree: { id: 'mare', label: 'mare', left: { id: 'casa', label: 'casa', state: 'focus', left: { id: 'albero', label: 'albero' } }, right: { id: 'telefono', label: 'telefono' } }, focus: 1, line: 5, vars: ['prima il sottoalbero sinistro', 'poi la radice', 'infine il sottoalbero destro'] }
+    ]
+  },
+  {
+    id: 'visual-stack-postfix', topic: 'stack', kind: 'walkthrough', level: 'medio',
+    title: 'Espressione postfix: pila aggiornata a ogni token', source: 'Esercizio guidato · pile e funzioni',
+    description: 'Valuta 8 3 - 2 +. Gli operandi entrano in cima; un operatore estrae prima il destro e poi il sinistro.',
+    code: ['push(8);', 'push(3);', 'b = pop(); /* operando destro */', 'a = pop(); /* operando sinistro */', 'push(a - b);', 'push(2);', 'b = pop(); /* operando destro */', 'a = pop(); /* operando sinistro */', 'push(a + b);'],
+    steps: [
+      { heading: 'Token 8: push', explanation: 'Il primo operando entra nella pila. Il valore 8 resta disponibile fino all’operatore.', nodes: ['pila = [8]'], stack: ['8'], focus: 0, line: 1, vars: ['8 è la cima e il fondo', 'un elemento, nessuna operazione ancora'] },
+      { heading: 'Token 3: push', explanation: 'Il secondo operando viene inserito sopra 8. Il più recente è ora in cima.', nodes: ['pila = [8, 3]'], stack: ['8', '3'], focus: 1, line: 2, vars: ['cima = 3', 'sotto la cima = 8'] },
+      { heading: 'Token −: prima pop, destro', explanation: 'Per una sottrazione postfix la prima pop è l’operando destro. Togli 3 e conservalo in b.', nodes: ['pila residua = [8]'], stack: ['8'], focus: 0, line: 3, vars: ['b = pop() = 3', 'a non è ancora stato estratto'] },
+      { heading: 'Token −: seconda pop, sinistro', explanation: 'La seconda pop produce l’operando sinistro: a=8. Ora entrambi gli operandi sono in variabili locali.', nodes: ['pila residua = []'], stack: [], focus: 0, line: 4, vars: ['a = pop() = 8', 'b = 3', 'calcolo: a - b = 5'] },
+      { heading: 'Token −: push del risultato', explanation: 'Calcola a-b, cioè 8-3=5, e inserisci il risultato. Non invertire l’ordine degli operandi.', nodes: ['pila = [5]'], stack: ['5'], focus: 0, line: 5, vars: ['push(8 - 3)', 'risultato parziale = 5'] },
+      { heading: 'Token 2: push', explanation: 'L’operando 2 si aggiunge sopra al risultato parziale 5.', nodes: ['pila = [5, 2]'], stack: ['5', '2'], focus: 1, line: 6, vars: ['cima = 2', '5 rimane sotto'] },
+      { heading: 'Token +: prima pop, destro', explanation: 'La prima pop per la somma dà l’operando destro b=2. La pila conserva ancora 5.', nodes: ['pila residua = [5]'], stack: ['5'], focus: 0, line: 7, vars: ['b = 2', 'a non è ancora stato estratto'] },
+      { heading: 'Token +: seconda pop, sinistro', explanation: 'La seconda pop restituisce a=5: è il risultato della sottrazione precedente.', nodes: ['pila residua = []'], stack: [], focus: 0, line: 8, vars: ['a = 5', 'b = 2', 'calcolo: a + b'] },
+      { heading: 'Token +: push finale', explanation: 'Inserisci 5+2=7. La pila contiene esattamente un elemento: questo è il risultato dell’espressione postfix.', nodes: ['pila finale = [7]'], stack: ['7'], focus: 0, line: 9, vars: ['push(5 + 2)', 'un solo valore ⇒ espressione valida'] }
+    ]
+  },
+  {
+    id: 'visual-function-rental', topic: 'functions', kind: 'walkthrough', level: 'medio',
+    title: 'Funzione affitta_stanza: parametri, scelta e return', source: 'Appello 16/12/2024 · prenotazioni stanze',
+    description: 'Segui la ricerca della prima stanza disponibile con capienza sufficiente nel piano richiesto. La traccia originale ordina la lista per costo, ma il testo chiede la prima capiente: non presume che quella capiente abbia sempre il costo globale minimo.',
+    code: ['stanza_t *affitta(Piano *p, unsigned capienza) {', '    for (s = p->stanze; s != NULL; s = s->next) {', '        if (s->disponibile && s->posti >= capienza) {', '            s->disponibile = 0;', '            return &s->stanza;', '        }', '    }', '    return NULL;', '}'],
+    steps: [
+      { heading: 'Ingresso nella funzione', explanation: 'I parametri p e capienza sono nel frame della chiamata; s è una variabile locale. La funzione riceve indirizzi/valori, non copie dell’intera lista.', nodes: ['Piano 1: €40 · 4 posti', 'Piano 1: €55 · 6 posti', 'Piano 2: €60 · 8 posti'], list: [{ value: '€40', detail: '4 posti · disponibile' }, { value: '€55', detail: '6 posti · disponibile' }, { value: '€60', detail: '8 posti · altro piano' }], focus: 0, line: 1, vars: ['capienza = 5', 's = prima stanza del piano richiesto'] },
+      { heading: 'Valuta disponibilità e capienza', explanation: 'La prima stanza ha 4 posti: 4 >= 5 è falso. La seconda ne ha 6, è disponibile, quindi soddisfa entrambe le condizioni.', nodes: ['€40 · 4 posti · non idonea', '€55 · 6 posti · idonea', '€60 · 8 posti · non esaminata'], list: [{ value: '€40', detail: '4 posti · non idonea' }, { value: '€55', detail: '6 posti · idonea' }, { value: '€60', detail: 'altro piano · non esaminata' }], focus: 1, line: 3, vars: ['4 >= 5 → falso', '6 >= 5 → vero', 'la ricerca si arresta alla prima idonea'] },
+      { heading: 'Aggiorna e restituisci', explanation: 'La funzione marca la stanza occupata e restituisce l’indirizzo di s->stanza. Il chiamante controlla che il risultato non sia NULL.', nodes: ['€55 · 6 posti · AFFITTATA'], list: [{ value: '€55', detail: '6 posti · AFFITTATA' }], focus: 0, line: 5, vars: ['s->disponibile = 0', 'return &s->stanza', 'risultato != NULL'] },
+      { heading: 'Nessuna stanza idonea', explanation: 'Se il ciclo termina senza trovare una stanza, la funzione restituisce NULL. Il chiamante deve controllare il valore prima di dereferenziarlo.', nodes: ['nessun nodo idoneo → return NULL'], focus: 0, line: 9, vars: ['caller: if (stanza != NULL)', 'non dereferenziare NULL'] }
+    ]
+  },
+  {
+    id: 'visual-tree-words-range', topic: 'trees', kind: 'walkthrough', level: 'avanzato',
+    title: 'BST: query alfabetica su intervallo', source: 'Appello 20/09/2024 · parole tra minimo e massimo',
+    description: 'Partendo dal BST di parole, cerca l’intervallo inclusivo [casa, telefono]. L’albero disegnato è coerente con casa < mare < telefono e albero < casa.',
+    code: ['if (strcmp(nodo->parola, minimo) > 0) visita(sinistra);', 'if (strcmp(nodo->parola, minimo) >= 0 &&', '    strcmp(nodo->parola, massimo) <= 0) aggiungi(nodo);', 'if (strcmp(nodo->parola, massimo) < 0) visita(destra);'],
+    steps: [
+      { heading: 'Questo è il BST da interrogare', explanation: 'L’ordine alfabetico è albero < casa < mare < telefono. albero è figlio sinistro di casa perché albero precede casa.', nodes: ['albero è a sinistra di casa; casa a sinistra di mare; telefono a destra di mare.'], tree: { id: 'mare', label: 'mare', left: { id: 'casa', label: 'casa', left: { id: 'albero', label: 'albero' } }, right: { id: 'telefono', label: 'telefono' } }, focus: 0, line: 1, vars: ['minimo = "casa"', 'massimo = "telefono"', 'intervallo inclusivo'] },
+      { heading: 'Esamina la radice “mare”', explanation: 'mare è compreso nell’intervallo. Siccome è maggiore di casa, il sottoalbero sinistro può contenere risultati; è minore di telefono, quindi anche il destro può contenerne.', nodes: ['casa · intervallo', 'mare · intervallo', 'telefono · intervallo'], tree: { id: 'mare', label: 'mare', state: 'match', left: { id: 'casa', label: 'casa', left: { id: 'albero', label: 'albero', state: 'pruned' } }, right: { id: 'telefono', label: 'telefono', state: 'match' } }, focus: 1, line: 2, vars: ['strcmp("mare", "casa") > 0 → visita sinistra', 'mare è incluso', 'strcmp("mare", "telefono") < 0 → visita destra'] },
+      { heading: 'Potatura e risultato', explanation: 'casa è il limite minimo: si include, ma il figlio sinistro albero va visitato perché potrebbe essere uguale o maggiore del minimo. albero è minore di casa, quindi viene escluso solo dopo il confronto. I risultati inorder sono casa, mare, telefono.', nodes: ['risultato: casa → mare → telefono'], tree: { id: 'mare', label: 'mare', state: 'match', left: { id: 'casa', label: 'casa', state: 'match', left: { id: 'albero', label: 'albero', state: 'pruned' } }, right: { id: 'telefono', label: 'telefono', state: 'match' } }, focus: 1, line: 4, vars: ['casa è incluso (estremo compreso)', 'visita il ramo sinistro: albero < casa → escluso', 'visita inorder → casa, mare, telefono'] }
+    ]
+  },
+  {
+    id: 'visual-logic-assignment', topic: 'logic', kind: 'walkthrough', level: 'base',
+    title: 'Traccia un ciclo: condizione, ramo, aggiornamento', source: 'Metodo di ragionamento · applicabile ai compiti d’esame',
+    description: 'Costruisci una tabella di traccia per sommare i valori pari. Segui indice, condizione, ramo eseguito e accumulatore.',
+    code: ['i = 0; somma = 0;', 'while (i < n) {', '    if (a[i] % 2 == 0) somma += a[i];', '    i++;', '}'],
+    steps: [
+      { heading: 'Stato iniziale', explanation: 'L’invariante è: somma contiene i valori pari già visitati. All’inizio non abbiamo esaminato elementi.', nodes: ['array = 3, 8, 2, 5', 'i = 0 · somma = 0'], focus: 0, line: 1, vars: ['elementi visti: nessuno', 'n = 4'] },
+      { heading: 'Ramo falso per 3', explanation: 'i < n è vero; 3 % 2 è 1, quindi il ramo pari non viene eseguito. Poi i aumenta a 1.', nodes: ['3 · corrente', '8', '2', '5'], focus: 0, line: 3, vars: ['3 % 2 == 0 → falso', 'somma = 0', 'i: 0 → 1'] },
+      { heading: 'Ramo vero per 8', explanation: '8 % 2 è zero: aggiungi 8 alla somma. L’aggiornamento porta i da 1 a 2.', nodes: ['3', '8 · corrente', '2', '5'], focus: 1, line: 3, vars: ['8 % 2 == 0 → vero', 'somma: 0 + 8 = 8', 'i: 1 → 2'] },
+      { heading: 'Fine: il ciclo non legge oltre l’array', explanation: 'Vengono aggiunti anche 2 e poi ignorato 5. Quando i=4, i<n è falso e l’accesso a[4] non avviene.', nodes: ['3', '8', '2 · aggiunto', '5 · dispari'], focus: 2, line: 4, vars: ['somma = 8 + 2 = 10', 'i = 4; 4 < 4 → falso'] }
+    ]
+  }
+];

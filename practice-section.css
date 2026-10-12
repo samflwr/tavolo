@@ -1,0 +1,184 @@
+.practice-intro { max-width: 72ch; margin: -5px 0 18px; color: var(--muted); font-size: 13px; line-height: 1.65 }
+.practice-progress { display: grid; gap: 10px; margin: 0 0 15px; padding: 14px 16px; border: 1px solid var(--surface-line, var(--line)); border-radius: 15px; background: var(--surface-base, var(--card)) }
+.practice-progress-copy { display: flex; align-items: baseline; justify-content: space-between; gap: 12px }
+.practice-progress-copy strong { font-size: 12px; font-weight: 650 }
+.practice-progress-copy span { color: var(--muted); font-size: 11px; font-variant-numeric: tabular-nums }
+.practice-progress-track { height: 5px; overflow: hidden; border-radius: 99px; background: var(--surface-soft, var(--paper)) }
+.practice-progress-track>span { display: block; width: 0; height: 100%; border-radius: inherit; background: var(--profile-accent, var(--green)); transition: width .28s ease }
+.practice-controls { display: grid; grid-template-columns: minmax(180px, 1.5fr) repeat(3, minmax(125px, 1fr)) auto; align-items: end; gap: 9px; margin: 0 0 14px; padding: 13px; border: 1px solid var(--surface-line, var(--line)); border-radius: 14px; background: var(--surface-base, var(--card)) }
+.practice-controls label,.recursion-controls label { display: grid; min-width: 0; gap: 5px; color: var(--muted); font-size: 9px; letter-spacing: .06em; text-transform: uppercase }
+.practice-controls input,.practice-controls select,.recursion-controls input,.recursion-controls select { width: 100%; min-width: 0; min-height: 40px; padding: 0 10px; border: 1px solid var(--surface-line, var(--line)); border-radius: 9px; background: var(--surface-raised, var(--card)); color: var(--ink); font: inherit; font-size: 11px; letter-spacing: normal; text-transform: none }
+.practice-controls button { min-height: 40px; padding: 0 10px; border: 1px solid var(--surface-line, var(--line)); border-radius: 9px; background: var(--surface-raised, var(--card)); color: var(--muted); font-size: 10px }
+#practice-filter-count { grid-column: 1/-1; color: var(--muted); font-size: 10px }
+.practice-topic-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px }
+.practice-topic-card { display: grid; min-width: 0; min-height: 76px; grid-template-columns: 34px minmax(0, 1fr) auto; align-items: center; gap: 11px; padding: 12px; border: 1px solid var(--surface-line, var(--line)); border-radius: 14px; background: var(--surface-base, var(--card)); color: var(--ink); text-align: left; transition: border-color .16s ease, background .16s ease, transform .16s ease }
+.practice-topic-card:hover { transform: translateY(-1px); border-color: color-mix(in srgb, var(--profile-accent, var(--ink)) 30%, var(--surface-line, var(--line))); background: var(--surface-raised, var(--card)) }
+.practice-topic-card.is-active { border-color: color-mix(in srgb, var(--profile-accent, var(--ink)) 33%, var(--surface-line, var(--line))); background: color-mix(in srgb, var(--profile-accent, #789078) 6%, var(--surface-base, var(--card))); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--profile-accent, var(--ink)) 9%, transparent) }
+.practice-topic-number { display: grid; width: 32px; height: 32px; place-items: center; border-radius: 10px; background: var(--surface-soft, var(--paper)); color: var(--profile-accent, var(--muted)); font-size: 10px; font-weight: 700; font-variant-numeric: tabular-nums }
+.practice-topic-copy { display: grid; min-width: 0; gap: 3px }
+.practice-topic-copy strong { font-size: 12px; font-weight: 650 }
+.practice-topic-copy small { overflow: hidden; color: var(--muted); font-size: 10px; line-height: 1.4; text-overflow: ellipsis }
+.practice-topic-score { align-self: start; padding: 4px 6px; border-radius: 99px; background: var(--surface-soft, var(--paper)); color: var(--muted); font-size: 9px; font-variant-numeric: tabular-nums }
+.practice-workspace { margin-top: 14px; padding: 19px; border: 1px solid var(--surface-line, var(--line)); border-radius: 17px; background: var(--surface-base, var(--card)); scroll-margin-top: 16px }
+.practice-view-readonly #practice-topic-grid { opacity: .72 }
+.practice-view-readonly #practice-topic-grid .practice-topic-card { cursor: pointer }
+.practice-view-readonly #practice-progress-title::after { content: ' · sola lettura'; color: var(--muted); font-size: 9px; font-weight: 450 }
+.practice-feedback-readonly { margin: 9px 0 0; color: var(--muted); font-size: 10px }
+.practice-choice.is-incorrect { border-color: color-mix(in srgb, #b86754 36%, var(--surface-line, var(--line))); background: color-mix(in srgb, #b86754 8%, var(--surface-base, var(--card))) }
+.practice-topic-heading { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; padding-bottom: 15px; border-bottom: 1px solid var(--surface-line, var(--line)) }
+.practice-topic-heading .section-kicker { margin-bottom: 5px; color: var(--profile-accent, var(--muted)) }
+.practice-topic-heading h3 { margin: 0; font-size: 19px; letter-spacing: -.035em }
+.practice-topic-heading p:last-child { max-width: 65ch; margin: 7px 0 0; color: var(--muted); font-size: 12px; line-height: 1.65 }
+.practice-reset,.practice-step-nav button,.recursion-debug-controls button,.walkthrough-controls button { min-height: 40px; flex: none; padding: 0 11px; border: 1px solid var(--surface-line, var(--line)); border-radius: 10px; background: var(--surface-raised, var(--card)); color: var(--muted); font-size: 10px }
+.practice-reset:hover,.practice-step-nav button:hover:not(:disabled),.recursion-debug-controls button:hover:not(:disabled),.walkthrough-controls button:hover:not(:disabled) { color: var(--ink); border-color: color-mix(in srgb, var(--profile-accent, var(--ink)) 30%, var(--surface-line, var(--line)) ) }
+.practice-step-nav button:disabled,.recursion-debug-controls button:disabled,.walkthrough-controls button:disabled { cursor: default; opacity: .42 }
+.practice-exercise-wrap { max-width: 900px; margin: 0 auto }
+.practice-exercise { padding-top: 17px }
+.practice-exercise-meta { display: flex; align-items: center; justify-content: space-between; gap: 10px; color: var(--muted); font-size: 9px; letter-spacing: .055em; text-transform: uppercase }
+.practice-solved { color: #43805a; font-weight: 700 }
+.practice-exercise h4 { margin: 7px 0 11px; font-size: 16px; font-weight: 650; letter-spacing: -.02em }
+.practice-exercise>p,.practice-exercise form>p { margin: 0 0 12px; color: var(--muted); font-size: 12px; line-height: 1.6 }
+.practice-quiz { min-width: 0; margin: 0; padding: 0; border: 0 }
+.practice-quiz legend { margin: 0 0 10px; padding: 0; font-size: 13px; font-weight: 620; line-height: 1.5 }
+.practice-choice-list { display: grid; gap: 7px }
+.practice-choice { width: 100%; min-height: 44px; padding: 10px 12px; border: 1px solid var(--surface-line, var(--line)); border-radius: 11px; background: var(--surface-raised, var(--card)); color: var(--ink); font-size: 11px; text-align: left; transition: border-color .16s ease, background .16s ease }
+.practice-choice:hover { border-color: color-mix(in srgb, var(--profile-accent, var(--ink)) 35%, var(--surface-line, var(--line))) }
+.practice-choice[aria-pressed="true"] { border-color: var(--profile-accent, var(--green)); background: color-mix(in srgb, var(--profile-accent, #718d73) 9%, var(--surface-base, var(--card))) }
+.practice-code { max-width: 100%; overflow: auto; margin: 10px 0 12px; padding: 15px; border: 1px solid var(--surface-line, var(--line)); border-radius: 12px; background: color-mix(in srgb, var(--ink) 3%, var(--surface-base, var(--card))); color: var(--ink); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12px; line-height: 1.8; tab-size: 4; text-transform: none }
+.practice-code code { font: inherit; white-space: pre }
+.practice-code-edit { margin-top: 8px }
+.practice-blank { min-width: 54px; max-width: 110px; margin: 0 2px; padding: 3px 20px 3px 6px; border: 1px solid color-mix(in srgb, var(--profile-accent, var(--green)) 32%, var(--surface-line, var(--line))); border-radius: 6px; background: var(--surface-base, var(--card)); color: var(--ink); font: inherit; font-size: 11px; vertical-align: baseline }
+.practice-action { min-height: 42px; padding: 0 14px; border: 1px solid transparent; border-radius: 10px; background: var(--ink); color: var(--card); font-size: 11px; font-weight: 620; transition: opacity .15s ease, transform .15s ease }
+.practice-action:hover { opacity: .86 }
+.practice-action:active { transform: scale(.985) }
+.practice-answer-label { display: grid; max-width: 460px; gap: 6px; margin: 0 0 10px; color: var(--muted); font-size: 10px }
+.practice-answer-label select { min-height: 42px; width: 100%; padding: 0 10px; border: 1px solid var(--surface-line, var(--line)); border-radius: 10px; background: var(--surface-raised, var(--card)); color: var(--ink); font-size: 11px }
+.practice-feedback { margin: 12px 0 0; padding: 11px 12px; border: 1px solid transparent; border-radius: 10px; font-size: 11px; line-height: 1.6 }
+.practice-feedback strong { display: block; margin-bottom: 2px }
+.practice-feedback.is-correct { border-color: color-mix(in srgb, #388354 24%, var(--surface-line, var(--line))); background: color-mix(in srgb, #5b9a70 9%, var(--surface-base, var(--card))); color: color-mix(in srgb, #24623b 82%, var(--ink)) }
+.practice-feedback.is-incorrect { border-color: color-mix(in srgb, #b86754 24%, var(--surface-line, var(--line))); background: color-mix(in srgb, #b86754 8%, var(--surface-base, var(--card))); color: var(--ink) }
+.practice-step-nav,.walkthrough-controls { display: flex; justify-content: space-between; gap: 8px; margin-top: 17px; padding-top: 12px; border-top: 1px solid var(--surface-line, var(--line)) }
+.practice-step-nav button { min-width: 120px }
+.practice-no-results { padding: 18px; color: var(--muted); font-size: 12px; line-height: 1.6 }
+.practice-source-badge { display: inline-block; margin: 3px 0 8px; padding: 5px 8px; border-radius: 99px; background: var(--surface-soft, var(--paper)); color: var(--muted); font-size: 9px; line-height: 1.4 }
+.open-code-activity>p,.practice-walkthrough>p { margin: 0 0 8px; color: var(--muted); font-size: 12px; line-height: 1.6 }
+.open-code-label { display: grid; gap: 6px; margin: 8px 0; color: var(--ink); font-size: 11px; font-weight: 600 }
+.open-code-label textarea { width: 100%; min-height: 130px; resize: vertical; padding: 12px; border: 1px solid var(--surface-line, var(--line)); border-radius: 10px; background: var(--surface-raised, var(--card)); color: var(--ink); font: 12px/1.7 ui-monospace, SFMono-Regular, Menlo, monospace; tab-size: 4 }
+.open-code-check-note { margin: 5px 0 9px; color: var(--muted); font-size: 10px; line-height: 1.5 }
+.open-code-hint { margin-top: 10px; color: var(--muted); font-size: 10px }
+.open-code-hint summary { min-height: 40px; padding: 12px 0; cursor: pointer }
+.walkthrough-step-heading { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; margin: 10px 0 5px; color: var(--ink); font-size: 13px }
+.walkthrough-step-heading span { color: var(--muted); font-size: 10px }
+.walkthrough-explanation { margin: 0 0 10px; color: var(--muted); font-size: 11px; line-height: 1.6 }
+.walkthrough-visual { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 9px; min-width: 0 }
+.walkthrough-structure,.walkthrough-source { min-width: 0; padding: 11px; border: 1px solid var(--surface-line, var(--line)); border-radius: 11px; background: var(--surface-raised, var(--card)) }
+.walkthrough-structure h5,.walkthrough-source h5 { margin: 0 0 8px; color: var(--muted); font-size: 9px; letter-spacing: .06em; text-transform: uppercase }
+.walkthrough-chain { display: flex; flex-wrap: wrap; align-items: center; gap: 5px; min-height: 48px }
+.walkthrough-node { max-width: 100%; padding: 7px; border: 1px solid var(--surface-line, var(--line)); border-radius: 8px; background: var(--surface-base, var(--card)); color: var(--ink); font: 10px/1.4 ui-monospace, SFMono-Regular, Menlo, monospace; overflow-wrap: anywhere }
+.walkthrough-node.is-focused { border-color: var(--profile-accent, var(--green)); box-shadow: inset 0 0 0 1px var(--profile-accent, var(--green)) }
+.walkthrough-arrow { color: var(--profile-accent, var(--muted)); font-size: 12px }
+.walkthrough-list-chain { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; min-height: 48px }
+.walkthrough-list-chain.is-detached { margin-top: 5px; padding-top: 6px; border-top: 1px dashed var(--surface-line, var(--line)) }
+.walkthrough-detached-label { margin-top: 8px; color: var(--muted); font-size: 8px; letter-spacing: .06em; text-transform: uppercase }
+.walkthrough-list { min-width: 0 }
+.walkthrough-list-node { display: grid; gap: 3px; padding: 8px 10px; border: 1px solid var(--surface-line, var(--line)); border-radius: 10px; background: var(--surface-base, var(--card)); color: var(--ink); font-size: 10px }
+.walkthrough-list-node small { color: var(--muted); font-size: 9px }
+.walkthrough-list-node.is-focused { border-color: var(--profile-accent, var(--green)); box-shadow: inset 0 0 0 1px var(--profile-accent, var(--green)) }
+.walkthrough-queues { display: grid; gap: 6px }
+.walkthrough-queue-row { display: grid; grid-template-columns: 76px minmax(0,1fr); gap: 8px; align-items: center; padding: 7px; border: 1px solid var(--surface-line, var(--line)); border-radius: 9px; background: var(--surface-base, var(--card)) }
+.walkthrough-queue-row.is-focused { border-color: var(--profile-accent, var(--green)); box-shadow: inset 0 0 0 1px var(--profile-accent, var(--green)) }
+.walkthrough-queue-row>strong { color: var(--muted); font-size: 9px }
+.walkthrough-queue-items { display: flex; flex-wrap: wrap; align-items: center; gap: 5px; min-width: 0 }
+.walkthrough-queue-items>span { padding: 5px 8px; border: 1px solid var(--surface-line, var(--line)); border-radius: 99px; background: var(--surface-soft, var(--paper)); color: var(--ink); font-size: 9px }
+.walkthrough-queue-items i { color: var(--profile-accent, var(--muted)); font-size: 10px; font-style: normal }
+.walkthrough-queue-items em { color: var(--muted); font-size: 9px }
+.walkthrough-stack { display: flex; width: min(100%,210px); flex-direction: column; align-items: stretch; gap: 4px; margin: 4px auto; text-align: center }
+.walkthrough-stack>span { padding: 7px; border: 1px solid var(--surface-line, var(--line)); border-radius: 6px; background: var(--surface-base, var(--card)); color: var(--ink); font: 10px ui-monospace, SFMono-Regular, Menlo, monospace }
+.walkthrough-stack>span.is-focused { border-color: var(--profile-accent, var(--green)); background: color-mix(in srgb, var(--profile-accent, #718d73) 10%, var(--surface-base, var(--card))) }
+.walkthrough-stack>small { color: var(--muted); font-size: 8px; letter-spacing: .08em; text-transform: uppercase }
+.walkthrough-state-cards { display: grid; gap: 5px }
+.walkthrough-state-card { display: flex; min-width: 0; align-items: baseline; gap: 8px; padding: 7px 9px; border: 1px solid var(--surface-line, var(--line)); border-radius: 8px; background: var(--surface-base, var(--card)); color: var(--ink); font-size: 10px; line-height: 1.45 }
+.walkthrough-state-card>span { flex: none; color: var(--muted); font: 8px ui-monospace, SFMono-Regular, Menlo, monospace }
+.walkthrough-state-card.is-focused { border-color: var(--profile-accent, var(--green)); box-shadow: inset 0 0 0 1px var(--profile-accent, var(--green)) }
+.walkthrough-tree-svg { display: block; width: 100%; max-height: 260px; margin: 0 auto; overflow: visible }
+.walkthrough-tree-link { stroke: var(--surface-line, var(--line)); stroke-width: 2 }
+.walkthrough-tree-node rect { fill: var(--surface-base, var(--card)); stroke: var(--surface-line, var(--line)); stroke-width: 1.5 }
+.walkthrough-tree-node text { fill: var(--ink); font: 10px ui-monospace, SFMono-Regular, Menlo, monospace }
+.walkthrough-tree-node.is-focus rect { stroke: var(--profile-accent, var(--green)); stroke-width: 3 }
+.walkthrough-tree-node.is-match rect { fill: color-mix(in srgb, var(--profile-accent, #718d73) 14%, var(--surface-base, var(--card))); stroke: var(--profile-accent, var(--green)) }
+.walkthrough-tree-node.is-pruned rect { fill: color-mix(in srgb, #b86754 10%, var(--surface-base, var(--card))); stroke: #b86754; stroke-dasharray: 4 3 }
+.walkthrough-tree-node.is-pruned text { fill: var(--muted) }
+.walkthrough-values { display: grid; gap: 4px; margin: 9px 0 0; padding-left: 17px; color: var(--muted); font-size: 9px; line-height: 1.45 }
+.walkthrough-source .practice-code { margin: 0; padding: 6px 0; font-size: 10px }
+.walkthrough-code-line { display: block; padding: 1px 7px; white-space: pre }
+.walkthrough-code-line small { display: inline-block; width: 21px; color: var(--muted) }
+.walkthrough-code-line.is-current { background: color-mix(in srgb, var(--profile-accent, #718d73) 15%, var(--surface-base, var(--card))); box-shadow: inset 3px 0 var(--profile-accent, var(--green)); color: var(--ink) }
+.walkthrough-controls { justify-content: flex-start; flex-wrap: wrap }
+.recursion-debugger { display: grid; gap: 11px; margin-top: 12px }
+.recursion-debugger>p { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.6 }
+.recursion-controls { display: grid; grid-template-columns: minmax(200px, 1fr) minmax(140px, .6fr) auto; align-items: end; gap: 9px; padding: 11px; border: 1px solid var(--surface-line, var(--line)); border-radius: 12px; background: var(--surface-raised, var(--card)) }
+.recursion-controls input,.recursion-controls select { min-height: 42px }
+.recursion-limit { color: var(--muted); font-size: 9px; line-height: 1.5 }
+.recursion-debugger-toolbar { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; color: var(--muted); font-size: 10px }
+.recursion-debugger-toolbar code { color: var(--ink); font-family: ui-monospace, SFMono-Regular, Menlo, monospace }
+.recursion-source>strong,.recursion-call-tree h5,.recursion-frames h5 { display: block; margin: 0 0 5px; color: var(--muted); font-size: 9px; font-weight: 650; letter-spacing: .07em; text-transform: uppercase }
+.recursion-source .practice-code { margin: 0; padding: 8px 0; line-height: 1.9 }
+.recursion-source-line { display: block; min-height: 22px; padding: 0 11px; white-space: pre }
+.recursion-source-line small { display: inline-block; width: 27px; color: var(--muted); font-size: 9px }
+.recursion-source-line.is-current { background: color-mix(in srgb, var(--profile-accent, #718d73) 16%, var(--surface-base, var(--card))); box-shadow: inset 3px 0 var(--profile-accent, var(--green)); color: var(--ink) }
+.recursion-debugger-grid { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: 10px; align-items: start }
+.recursion-call-tree,.recursion-frames { min-width: 0; padding: 11px; border: 1px solid var(--surface-line, var(--line)); border-radius: 11px; background: var(--surface-raised, var(--card)) }
+.recursion-call-tree { overflow: auto }
+.recursion-call-tree ul { margin: 0; padding-left: 15px; list-style: none }
+.recursion-call-tree li { position: relative; min-width: max-content; padding: 4px 0 4px 12px; border-left: 1px solid var(--surface-line, var(--line)) }
+.recursion-call-tree li::before { position: absolute; top: 14px; left: 0; width: 9px; border-top: 1px solid var(--surface-line, var(--line)); content: '' }
+.recursion-tree-node { display: inline-block; padding: 5px 7px; border: 1px solid var(--surface-line, var(--line)); border-radius: 7px; color: var(--ink); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 9px }
+.recursion-tree-node small { color: var(--muted); font-family: inherit }
+.recursion-tree-node.is-active { border-color: var(--profile-accent, var(--green)); background: color-mix(in srgb, var(--profile-accent, #718d73) 12%, var(--surface-base, var(--card))) }
+.recursion-tree-node.is-returned { border-color: #76a985; color: #43805a }
+.recursion-tree-node.is-waiting { border-color: #c3954d }
+.recursion-frames { display: grid; align-content: start; gap: 6px }
+.recursion-frame { min-width: 0; padding: 8px; border: 1px solid var(--surface-line, var(--line)); border-radius: 8px; background: var(--surface-base, var(--card)); overflow-wrap: anywhere }
+.recursion-frame.is-active { border-color: var(--profile-accent, var(--green)); box-shadow: inset 3px 0 var(--profile-accent, var(--green)) }
+.recursion-frame.is-waiting { border-color: #c3954d }
+.recursion-frame header { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 5px; color: var(--ink); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 9px }
+.recursion-frame header span,.recursion-frame p { color: var(--muted); font-family: inherit; font-size: 9px }
+.recursion-frame p { margin: 5px 0 0; line-height: 1.5 }
+.recursion-frame code { color: var(--ink); font-family: ui-monospace, SFMono-Regular, Menlo, monospace }
+.recursion-stack-empty { margin: 7px 0; color: var(--muted); font-size: 10px }
+.recursion-explanation { margin: 0; padding: 10px 12px; border-left: 2px solid var(--profile-accent, var(--green)); background: var(--surface-soft, var(--paper)) }
+.recursion-explanation strong { font-size: 11px }
+.recursion-explanation p { margin: 3px 0 0; color: var(--muted); font-size: 10px; line-height: 1.6 }
+.recursion-debug-controls { display: flex; flex-wrap: wrap; gap: 7px }
+:root[data-theme="dark"] body[data-profile] .practice-topic-card.is-active { background: color-mix(in srgb, var(--profile-accent) 12%, var(--surface-base)) }
+:root[data-theme="dark"] body[data-profile] .practice-feedback.is-correct { color: #b6ddbd }
+@media(max-width:900px) { .practice-controls { grid-template-columns: repeat(2,minmax(0,1fr)) } .practice-filter-search { grid-column: 1/-1 } }
+@media(max-width:620px) {
+    .practice-topic-grid { grid-template-columns: 1fr; gap: 6px }
+    .practice-controls { grid-template-columns: 1fr 1fr; gap: 8px }
+    .practice-filter-search,#practice-filter-count { grid-column: 1/-1 }
+    .practice-progress-copy { align-items: flex-start; flex-direction: column; gap: 3px }
+    .practice-intro { font-size: 12px }
+    .practice-view-readonly #practice-progress-title::after { display: block }
+    .practice-topic-card { min-height: 66px; padding: 10px }
+    .practice-workspace { margin-top: 10px; padding: 13px; border-radius: 14px }
+    .practice-topic-heading { flex-direction: column; gap: 9px }
+    .practice-topic-heading h3 { font-size: 17px }
+    .practice-reset { min-height: 40px }
+    .practice-exercise h4 { font-size: 14px }
+    .practice-code { padding: 11px; font-size: 10px }
+    .practice-blank { min-width: 44px; max-width: 88px; font-size: 10px }
+    .open-code-label textarea { min-height: 155px; font-size: 11px }
+    .walkthrough-visual { grid-template-columns: 1fr }
+    .walkthrough-tree-svg { max-height: 220px }
+    .walkthrough-queue-row { grid-template-columns: 66px minmax(0,1fr) }
+    .walkthrough-controls button { flex: 1 1 30%; min-height: 44px }
+    .recursion-controls { grid-template-columns: 1fr 1fr }
+    .recursion-limit { grid-column: 1/-1 }
+    .recursion-debugger-grid { grid-template-columns: 1fr }
+    .recursion-call-tree { overflow: auto }
+    .recursion-debug-controls button { flex: 1 1 calc(50% - 7px); min-height: 44px }
+    .practice-step-nav button { min-height: 44px; min-width: 0; flex: 1; padding: 0 7px; font-size: 9px }
+}
+@media(prefers-reduced-motion:reduce) { .practice-topic-card,.practice-progress-track>span,.practice-choice,.practice-action { transition: none } }
+

@@ -3511,13 +3511,13 @@ body[data-profile="loreta"] {
 
 @media(max-width:360px) {
     .study-week-nav {
-        flex-wrap: wrap;
-        justify-content: flex-start
+        flex-wrap: nowrap;
+        justify-content: space-between
     }
 
     #study-week-label {
-        width: 100%;
-        text-align: left
+        width: auto;
+        text-align: center
     }
 }
 
@@ -3988,6 +3988,10 @@ body[data-profile="loreta"] {
     }
 
     .study-toolbar {
+        box-sizing: border-box;
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
         align-items: stretch;
         flex-direction: column;
         gap: 8px;
@@ -3999,7 +4003,10 @@ body[data-profile="loreta"] {
     }
 
     .study-week-nav {
+        box-sizing: border-box;
         width: 100%;
+        max-width: 100%;
+        min-width: 0;
         min-height: 44px;
         justify-content: space-between;
         gap: 6px;
@@ -4033,8 +4040,8 @@ body[data-profile="loreta"] {
 
     .study-week-arrow svg,.study-add-primary svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round }
     .study-week-nav .study-week-today { min-height: 44px; padding: 0 10px; border: 0; border-radius: 9px; background: color-mix(in srgb, var(--profile-accent, #718d73) 11%, var(--card)); color: var(--profile-accent, var(--ink)); font-size: 10px; font-weight: 650 }
-    .study-toolbar-actions { display: grid; width: 100%; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 6px }
-    .study-toolbar-actions button { width: 100%; min-width: 0; min-height: 44px; justify-content: center; margin: 0; padding: 7px 8px; border-radius: 10px; font-size: 10px; font-weight: 620; line-height: 1.25; text-align: center }
+    .study-toolbar-actions { box-sizing: border-box; display: grid; width: 100%; max-width: 100%; min-width: 0; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px }
+    .study-toolbar-actions button { box-sizing: border-box; width: 100%; max-width: 100%; min-width: 0; min-height: 44px; justify-content: center; margin: 0; padding: 7px 8px; border-radius: 10px; font-size: 10px; font-weight: 620; line-height: 1.25; text-align: center; white-space: normal; overflow-wrap: anywhere }
     .study-toolbar-actions .study-add-primary { grid-column: 1 / -1; min-height: 46px; gap: 7px; border: 0; border-radius: 10px; background: var(--ink); color: #fff; font-size: 11px; box-shadow: none }
     .study-toolbar-actions .study-suggest-button,.study-toolbar-actions .study-settings-button { border: 1px solid var(--surface-line, var(--line)); background: var(--surface-raised, var(--card)); color: var(--ink) }
     .study-toolbar-actions .study-settings-button { display: inline-flex; align-items: center }
@@ -7622,8 +7629,8 @@ body[data-profile] .course-section .course-card .course-note-panel textarea,
     body[data-profile] .view-tabs {
         display: grid;
         width: 100%;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 2px;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 3px;
         overflow-x: visible;
         padding: 3px;
         margin-bottom: 21px
@@ -7631,10 +7638,12 @@ body[data-profile] .course-section .course-card .course-note-panel textarea,
 
     body[data-profile] .view-tab {
         min-width: 0;
-        min-height: 36px;
+        min-height: 40px;
         gap: 4px;
-        padding: 0 5px;
-        font-size: 11px
+        padding: 0 6px;
+        font-size: 11px;
+        line-height: 1.2;
+        white-space: normal
     }
 
     body[data-profile] .view-tab .tab-count {
