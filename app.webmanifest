@@ -1,0 +1,20 @@
+{
+  "id": "./",
+  "name": "tavolo esami — bacheca di studio",
+  "short_name": "tavolo esami",
+  "description": "Organizza appelli, studio e progressi del gruppo.",
+  "lang": "it",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f5f5f0",
+  "theme_color": "#f5f5f0",
+  "icons": [
+    {
+      "src": "app-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
